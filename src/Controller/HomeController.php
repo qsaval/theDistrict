@@ -17,21 +17,9 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(Request $request , EntityManagerInterface $manager): Response
+    public function index(): Response
     {
-        $plat = new Plat;
-        $form = $this->createForm(PlatType::class, $plat);
-
-        $form->handleRequest($request);
-        if($form->isSubmitted() && $form->isValid()){
-            $plat = $form->getData();
-
-            $manager->persist($plat);
-            $manager->flush();
-        }
-        return $this->render('home/index.html.twig', [
-            'form' => $form->createView()
-        ]);
+        return $this->render('home/index.html.twig');
     }
 
     #[Route('/categorie', name: 'categorie')]
