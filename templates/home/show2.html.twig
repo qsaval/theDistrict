@@ -1,0 +1,17 @@
+{% extends "base.html.twig" %}
+
+{% block title %} {{plat.libelle}}{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-4">{{ plat.libelle }}</h1>
+        <div class="d-flex">
+            <img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" width="400px" height="300px">
+            <div class="mx-4">
+                <p>prix: {{ plat.prix }}.00€</p>
+                <p>{{ plat.description|raw }}</p>
+                <button class="btn btn-primary">panier</button>
+            </div>
+        </div>
+    </div>
+{% endblock %}

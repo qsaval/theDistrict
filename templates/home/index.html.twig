@@ -1,0 +1,15 @@
+{% extends 'base.html.twig' %}
+
+{% block title %} Acceuil{% endblock %}
+
+{% block body %}
+    <div class="container">
+        <h1 class="mt-4">Bienvenue sur le site du restaurant</h1>
+        <p>Notre restaurant propose plusieur plat pour tout les gouts, plusieur categorie de plat sont mise a votre disposition</p>
+        <br>
+        <p>Bon choix a vous:</p> 
+        {{ form_start(form) }}
+        <button type="submit">envoie</button>
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
