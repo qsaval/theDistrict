@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Acceuil
+{% endblock %}
+
+{% block body %}
+	<div class="container">
+		<h1 class="mt-4">Bienvenue sur le site du restaurant</h1>
+		<p>Notre restaurant propose plusieur plat pour tout les gouts, plusieur categorie de plat sont mise a votre disposition</p>
+		<br>
+		<p>Bon choix a vous:</p>
+		<div class="row">
+			<div class="col-4 my-2">
+				<div class="card border-dark" style="height: 33rem;">
+					<div class="card-body">
+						<h4 class="card-title">{{ categorie1.libelle }}</h4>
+						<img src="{{ asset('media/') }}{{ categorie1.image }}" alt="{{ categorie1.libelle }}" heigh="330px" width="280px">
+						<br>
+						<a href="{{ path('categorie_show', {'id': categorie1.id}) }}" class="btn ptn-primary mt-2">liste des Plats</a>
+					</div>
+				</div>
+			</div>
+            <div class="col-4 my-2">
+                <div class="card border-dark" style="height: 33rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ categorie2.libelle }}</h4>
+                        <img src="{{ asset('media/') }}{{ categorie2.image }}" alt="{{ categorie2.libelle }}" heigh="330px" width="280px">
+                        <br>
+                        <a href="{{ path('categorie_show', {'id': categorie2.id}) }}" class="btn ptn-primary mt-2">liste des Plats</a>
+                    </div>
+                </div>
+            </div>
+            <div class="col-4 my-2">
+                <div class="card border-dark" style="height: 33rem;">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ categorie3.libelle }}</h4>
+                        <img src="{{ asset('media/') }}{{ categorie3.image }}" alt="{{ categorie3.libelle }}" heigh="330px" width="280px">
+                        <br>
+                        <a href="{{ path('categorie_show', {'id': categorie3.id}) }}" class="btn ptn-primary mt-2">liste des Plats</a>
+                    </div>
+                </div>
+            </div>
+		</div>
+	</div>
+{% endblock %}

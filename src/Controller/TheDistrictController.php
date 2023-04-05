@@ -3,13 +3,9 @@
 namespace App\Controller;
 
 use App\Entity\Plat;
-use App\Form\PlatType;
 use App\Entity\Categorie;
-use App\Form\CategorieType;
 use App\Repository\PlatRepository;
 use App\Repository\CategorieRepository;
-use Doctrine\ORM\EntityManagerInterface;
-use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -17,9 +13,17 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(): Response
+    public function index(CategorieRepository $ripo): Response
     {
-        return $this->render('home/index.html.twig');
+        $categorie1 = $ripo->find(1);
+        $categorie2 = $ripo->find(2);
+        $categorie3 = $ripo->find(3);
+
+        return $this->render('home/index.html.twig', [
+            'categorie1' => $categorie1,
+            'categorie2' => $categorie2,
+            'categorie3' => $categorie3,
+        ]);
     }
 
     #[Route('/categorie', name: 'categorie')]
