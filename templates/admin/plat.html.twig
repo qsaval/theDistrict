@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Administration des plats
+{% endblock %}
+
+{% block body %}
+	<div class="container-fluid row mt-4">
+		<div class="col-2 mb-5">
+			<div class="card border-dark mb-3" style="max-width: 20rem;">
+				<div class="card-body">
+					<h4>
+						liste de commande
+					</h2>
+					<ul>
+						<li><a href="{{ path('admin_categorie') }}">liste des categories</a></li>
+						<li><a href="{{ path('admin_plat') }}">liste des plats</a></li>
+						<li><a href="{{ path('admin_commande') }}">liste des commandes</a></li>
+						<li><a href="{{ path('admin_user') }}">liste des utilisateur</a></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+		<div class="col-10">
+			<h1>liste des plats</h1>
+			<table class="table table-hover">
+				<thead>
+					<tr>
+						<th scope="col">Numéro</th>
+						<th scope="col">Nom</th>
+						<th scope="col">description</th>
+						<th scope="col">prix</th>
+						<th scope="col">Edition</th>
+						<th scope="col">suppresion</th>
+					</tr>
+				</thead>
+				<tbody>
+					{% for plat in plats %}
+						<tr class="table-primary">
+							<th scope="row">{{ plat.id }}</th>
+							<td>{{ plat.libelle }}</td>
+							<td>{{ plat.description }}</td>
+							<td>{{ plat.prix }},00</td>
+							<td>
+								<a href="#" class="btn btn-info">Modifier</a>
+							</td>
+							<td>
+								<a href="#" class="btn btn-warning">Supprimer</a>
+							</td>
+						</tr>
+					{% endfor %}
+				</tbody>
+			</table>
+		</div>
+	</div>
+{% endblock %}

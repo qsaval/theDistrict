@@ -23,10 +23,15 @@
 			</ul>
 			<ul class="navbar-nav me-auto col-3">
 				{% if app.user %}
-          <li class="nav-item">
+					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_logout') }}">Deconnexion</a>
 					</li>
-        {% else %}
+					{% if 'ROLE_ADMIN' in app.user.roles %}
+						<li class="nav-item">
+							<a class="nav-link" href="{{ path('app_admin') }}">Administration</a>
+						</li>
+					{% endif %}
+				{% else %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
 					</li>

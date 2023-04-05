@@ -1,20 +1,20 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Catégorie
+	Plats
 {% endblock %}
 
 {% block body %}
 	<div class="container">
-		<h1 class=" mt-4">Liste des catégories</h1>
+		<h1 class=" mt-4">Liste des plats</h1>
 		<p>Bon choix a vous:</p>
 		<div class="row">
 			{% for plat in plats %}
-				<div class="col-4">
+				<div class="col-4 mt-3">
 					<div class="card border-dark" style="height: 35rem">
 						<div class="card-body">
 							<h4 class="card-title">{{ plat.libelle }}</h4>
-							<img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" class="img-fluid img-thumbnail">
+							<img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" height="10rem" class="img-fluid img-thumbnail">
 							<br>
 							<a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn ptn-primary">Description</a>
 						</div>
