@@ -15,16 +15,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class HomeController extends AbstractController
 {
     #[Route('/', name: 'home')]
-    public function index(CategorieRepository $ripo): Response
+    public function index(CategorieRepository $Cripo, PlatRepository $Pripo): Response
     {
-        $categorie1 = $ripo->find(1);
-        $categorie2 = $ripo->find(2);
-        $categorie3 = $ripo->find(3);
+        $categorie = $Cripo->findBy(['favori' => 'Yes']);
+        $plat = $Pripo->findBy(['favori' => 'Yes']);
 
         return $this->render('home/index.html.twig', [
-            'categorie1' => $categorie1,
-            'categorie2' => $categorie2,
-            'categorie3' => $categorie3,
+            'categories' => $categorie,
+            'plats' =>$plat,
         ]);
     }
 

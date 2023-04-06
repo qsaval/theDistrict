@@ -6,9 +6,12 @@ Acceuil
 
 {% block body %}
 <div class="container">
+    <div class="d-flex justify-content-center">
+        <img src="{{ asset('media/assiette2.jpg') }}" alt="" class="">
+    </div>
     <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Search">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+        <input class="form-control me-sm-2" type="search" placeholder="Recherche">
+        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Recherche</button>
     </form>
     <h1 class="mt-4">Bienvenue sur le site de notre restaurant</h1>
     <p>Notre restaurant propose plusieur plat pour tout les gouts, plusieur categorie de plat sont mise a votre
@@ -16,42 +19,36 @@ Acceuil
     <br>
     <p>Bon choix a vous:</p>
     <div class="row">
-        <div class="col-4 my-2">
+        {% for categorie in categories %}
+        {% if categorie.active == 'Yes' %}
+        <div class="col-lg-4 my-2">
             <div class="card border-dark" style="height: 33rem;">
                 <div class="card-body">
-                    <h4 class="card-title">{{ categorie1.libelle }}</h4>
-                    <img src="{{ asset('media/') }}{{ categorie1.image }}" alt="{{ categorie1.libelle }}" heigh="330px"
+                    <h4 class="card-title">{{ categorie.libelle }}</h4>
+                    <img src="{{ asset('media/') }}{{ categorie.image }}" alt="{{ categorie.libelle }}" heigh="330px"
                         width="280px">
                     <br>
-                    <a href="{{ path('categorie_show', {'id': categorie1.id}) }}" class="btn btn-primary mt-2">liste des
+                    <a href="{{ path('categorie_show', {'id': categorie.id}) }}" class="btn btn-primary mt-2">liste des
                         Plats</a>
                 </div>
             </div>
         </div>
-        <div class="col-4 my-2">
-            <div class="card border-dark" style="height: 33rem;">
-                <div class="card-body">
-                    <h4 class="card-title">{{ categorie2.libelle }}</h4>
-                    <img src="{{ asset('media/') }}{{ categorie2.image }}" alt="{{ categorie2.libelle }}" heigh="330px"
-                        width="280px">
-                    <br>
-                    <a href="{{ path('categorie_show', {'id': categorie2.id}) }}" class="btn btn-primary mt-2">liste des
-                        Plats</a>
+        {% endif %}
+        {% endfor %}
+    </div>
+    <div class="row">
+        {% for plat in plats %}
+            <div class="col-lg-4 mt-3">
+                <div class="card border-dark" style="height: 35rem">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ plat.libelle }}</h4>
+                        <img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" height="10rem" class="img-fluid img-thumbnail">
+                        <br>
+                        <a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
+                    </div>
                 </div>
             </div>
-        </div>
-        <div class="col-4 my-2">
-            <div class="card border-dark" style="height: 33rem;">
-                <div class="card-body">
-                    <h4 class="card-title">{{ categorie3.libelle }}</h4>
-                    <img src="{{ asset('media/') }}{{ categorie3.image }}" alt="{{ categorie3.libelle }}" heigh="330px"
-                        width="280px">
-                    <br>
-                    <a href="{{ path('categorie_show', {'id': categorie3.id}) }}" class="btn btn-primary mt-2">liste des
-                        Plats</a>
-                </div>
-            </div>
-        </div>
+        {% endfor %}
     </div>
 </div>
 {% endblock %}

@@ -15,49 +15,57 @@ class AppFixtures extends Fixture
             $categorie1 = new Categorie();
             $categorie1->setLibelle('Pizza')
                   ->setImage('pizza_cat.jpg')
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('Yes');
             $manager->persist($categorie1);
 
             $categorie2 = new Categorie();
             $categorie2->setLibelle('Burger')
                   ->setImage('burger_cat.jpg')
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('Yes');
             $manager->persist($categorie2);
 
             $categorie3 = new Categorie();
             $categorie3->setLibelle('Wraps')
                   ->setImage('wrap_cat.jpg')
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('Yes');
             $manager->persist($categorie3);
 
             $categorie4 = new Categorie();
             $categorie4->setLibelle('Pasta')
                   ->setImage('pasta_cat.jpg')
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('Yes');
             $manager->persist($categorie4);
 
             $categorie5 = new Categorie();
             $categorie5->setLibelle('Sandwich')
                   ->setImage('sandwich_cat.jpg')
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('No');
             $manager->persist($categorie5);
 
             $categorie6 = new Categorie();
             $categorie6->setLibelle('Asian Food')
                   ->setImage('asian_food_cat.jpg')
-                  ->setActive('No');
+                  ->setActive('No')
+                  ->setFavori('No');
             $manager->persist($categorie6);
 
             $categorie7 = new Categorie();
             $categorie7->setLibelle('Salade')
                   ->setImage('salade_cat.jpg')
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('Yes');
             $manager->persist($categorie7);
 
             $categorie8 = new Categorie();
             $categorie8->setLibelle('Veggie')
                   ->setImage('veggie_cat.jpg')
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('Yes');
             $manager->persist($categorie8);
 
             $plat1 = new Plat();
@@ -66,7 +74,8 @@ class AppFixtures extends Fixture
                   ->setPrix(8)
                   ->setImage('hamburger.jpg')
                   ->setCategorie($categorie2)
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('Yes');
             $manager->persist($plat1);
 
             $plat2 = new Plat();
@@ -75,7 +84,8 @@ class AppFixtures extends Fixture
                   ->setPrix(14)
                   ->setimage('pizza-salmon.png')
                   ->setCategorie($categorie1)
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('No');
             $manager->persist($plat2);
 
             $plat3 = new Plat();
@@ -84,7 +94,8 @@ class AppFixtures extends Fixture
                   ->setPrix(5)
                   ->setimage('buffalo-chicken.webp')
                   ->setCategorie($categorie3)
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('Yes');
             $manager->persist($plat3);
 
             $plat4 = new Plat();
@@ -93,7 +104,8 @@ class AppFixtures extends Fixture
                   ->setPrix(8)
                   ->setimage('cheesburger.jpg')
                   ->setCategorie($categorie2)
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('No');
             $manager->persist($plat4);
 
             $plat5 = new Plat();
@@ -102,7 +114,8 @@ class AppFixtures extends Fixture
                   ->setPrix(10)
                   ->setimage('spaghetti-legumes.jpg')
                   ->setCategorie($categorie4)
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('No');
             $manager->persist($plat5);
 
             $plat6 = new Plat();
@@ -111,7 +124,8 @@ class AppFixtures extends Fixture
                   ->setPrix(7)
                   ->setimage('cesar_salad.jpg')
                   ->setCategorie($categorie7)
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('No');
             $manager->persist($plat6);
 
             $plat7 = new Plat();
@@ -120,7 +134,8 @@ class AppFixtures extends Fixture
                   ->setPrix(14)
                   ->setimage('pizza-margherita.jpg')
                   ->setCategorie($categorie1)
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('No');
             $manager->persist($plat7);
 
             $plat8 = new Plat();
@@ -129,7 +144,8 @@ class AppFixtures extends Fixture
                   ->setPrix(8)
                   ->setimage('courgettes_farcies.jpg')
                   ->setCategorie($categorie8)
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('No');
             $manager->persist($plat8);
 
             $plat9 = new Plat();
@@ -138,7 +154,8 @@ class AppFixtures extends Fixture
                   ->setPrix(12)
                   ->setimage('lasagnes_viande.jpg')
                   ->setCategorie($categorie4)
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('Yes');
             $manager->persist($plat9);
 
             $plat10 = new Plat();
@@ -147,7 +164,8 @@ class AppFixtures extends Fixture
                   ->setPrix(12)
                   ->setimage('tagliatelles_saumon.webp')
                   ->setCategorie($categorie4)
-                  ->setActive('Yes');
+                  ->setActive('Yes')
+                  ->setFavori('No');
             $manager->persist($plat10);
 
             $command1 = new Commande();

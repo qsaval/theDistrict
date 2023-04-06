@@ -37,6 +37,9 @@ class Plat
     #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'plat')]
     private Collection $commandes;
 
+    #[ORM\Column(length: 255)]
+    private ?string $favori = null;
+
     public function __construct()
     {
         $this->commandes = new ArrayCollection();
@@ -142,6 +145,18 @@ class Plat
         if ($this->commandes->removeElement($commande)) {
             $commande->removePlat($this);
         }
+
+        return $this;
+    }
+
+    public function getFavori(): ?string
+    {
+        return $this->favori;
+    }
+
+    public function setFavori(string $favori): self
+    {
+        $this->favori = $favori;
 
         return $this;
     }
