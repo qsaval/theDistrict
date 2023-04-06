@@ -3,9 +3,13 @@
 namespace App\Controller;
 
 use App\Entity\Plat;
+use App\Entity\Contact;
 use App\Entity\Categorie;
+use App\Form\ContactType;
+use App\Service\MailService;
 use App\Repository\PlatRepository;
 use App\Repository\CategorieRepository;
+use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
@@ -71,4 +75,35 @@ class HomeController extends AbstractController
             'plat' => $plat
         ]);
     }
+
+    #[Route('/contact', name: 'contact')]
+    public function contact(Request $request, EntityManagerInterface $manager, MailService $mailService): Response
+    {
+        $contact = new Contact();
+
+        $form = $this->createForm(ContactType::class, $contact);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $contact = $form->getData();
+
+            $manager->persist($contact);
+            $manager->flush();
+
+            $mailService->sendEmail(
+                $contact->getEmail(),
+                $contact->getSubject(),
+                'emails/contact.html.twig',
+                ['contact' => $contact]
+            );
+
+
+            return $this->redirectToRoute('contact');
+        }
+
+        return $this->render('home/contact.html.twig', [
+            'form' => $form->createView()
+        ]);
+    }
+
 }
