@@ -6,6 +6,8 @@ use App\Entity\Plat;
 use App\Entity\Categorie;
 use App\Repository\PlatRepository;
 use App\Repository\CategorieRepository;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -27,9 +29,14 @@ class HomeController extends AbstractController
     }
 
     #[Route('/categorie', name: 'categorie')]
-    public function categorie(CategorieRepository $categoriripo): Response
+    public function categorie(CategorieRepository $categoriripo,  PaginatorInterface $paginator, Request $request): Response
     {
-        $categorie = $categoriripo->findAll();
+        $categorie = $paginator->paginate(
+            $categoriripo->findAll(),
+            $request->query->getInt('page', 1),
+            7
+        );
+
         return $this->render('home/categorie.html.twig', [
             'categories' => $categorie
         ]);
@@ -46,9 +53,14 @@ class HomeController extends AbstractController
     }
 
     #[Route('/plat', name: 'plat')]
-    public function plat(PlatRepository $platripo): Response
+    public function plat(PlatRepository $platripo,  PaginatorInterface $paginator, Request $request): Response
     {
-        $plat = $platripo->findAll();
+        $plat = $paginator->paginate(
+            $platripo->findAll(),
+            $request->query->getInt('page', 1),
+            6
+        );
+
         return $this->render('home/plat.html.twig', [
             'plats' => $plat
         ]);

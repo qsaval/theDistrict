@@ -10,7 +10,7 @@
 			<div class="card border-dark mb-3" style="max-width: 20rem;">
 				<div class="card-body">
 					<h4>
-						liste de commande
+						liste de admin
 					</h2>
 					<ul>
 						<li><a href="{{ path('admin_categorie') }}">liste des categories</a></li>
@@ -22,19 +22,32 @@
 			</div>
 		</div>
 		<div class="col-10">
-			<h1>liste des utilisateur</h1>
+			<h1>liste des commandes</h1>
 			<table class="table table-hover">
 				<thead>
 					<tr>
 						<th scope="col">Numéro</th>
-						<th scope="col">Nom</th>
+						<th scope="col">Etat</th>
+						<th scope="col">Quantite</th>
+						<th scope="col">total a payer</th>
+
 						<th scope="col">Email</th>
-						<th scope="col">Role</th>
 						<th scope="col">suppresion</th>
 					</tr>
 				</thead>
 				<tbody>
-					
+					{% for commande in commandes %}
+						<tr class="table-primary">
+							<th scope="row">{{ commande.id }}</th>
+							<td>{{ commande.etat }}</td>
+							<td>{{ commande.quantite }}</td>
+							<td>{{ commande.total }},00</td>
+							<td>{{ commande.emailClient }}</td>
+							<td>
+								<a href="{{ path('admin_commande_delete', {'id': commande.id}) }}" class="btn btn-warning">Supprimer</a>
+							</td>
+						</tr>
+					{% endfor %}
 				</tbody>
 			</table>
 		</div>
