@@ -3,6 +3,8 @@
 namespace App\Entity;
 
 use App\Repository\PlatRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 
@@ -32,8 +34,13 @@ class Plat
     #[ORM\ManyToOne(inversedBy: 'plats')]
     private ?Categorie $categorie = null;
 
-    #[ORM\ManyToOne(inversedBy: 'plat')]
-    private ?Commande $commande = null;
+    #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'plat')]
+    private Collection $commandes;
+
+    public function __construct()
+    {
+        $this->commandes = new ArrayCollection();
+    }
 
     public function getId(): ?int
     {
@@ -112,15 +119,31 @@ class Plat
         return $this;
     }
 
-    public function getCommande(): ?Commande
+    /**
+     * @return Collection<int, Commande>
+     */
+    public function getCommandes(): Collection
     {
-        return $this->commande;
+        return $this->commandes;
     }
 
-    public function setCommande(?Commande $commande): self
+    public function addCommande(Commande $commande): self
     {
-        $this->commande = $commande;
+        if (!$this->commandes->contains($commande)) {
+            $this->commandes->add($commande);
+            $commande->addPlat($this);
+        }
 
         return $this;
     }
+
+    public function removeCommande(Commande $commande): self
+    {
+        if ($this->commandes->removeElement($commande)) {
+            $commande->removePlat($this);
+        }
+
+        return $this;
+    }
+
 }

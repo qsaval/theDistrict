@@ -39,9 +39,9 @@
 							<th scope="row">{{ user.id }}</th>
 							<td>{{ user.nomPrenom }}</td>
 							<td>{{ user.email }}</td>
-							<td></td>
+							<td>{{ user.roles[0]}}</td>
 							<td>
-								<a href="#" class="btn btn-warning">Supprimer</a>
+								<a href="{{ path('admin_user_delete', {'id': user.id}) }}" class="btn btn-warning">Supprimer</a>
 							</td>
 						</tr>
 					{% endfor %}

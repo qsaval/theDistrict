@@ -22,7 +22,10 @@
 			</div>
 		</div>
 		<div class="col-10">
-			<h1>liste des categories</h1>
+			<div class="row">
+			<h1 class="col-10">liste des categories</h1>
+			<a href="{{ path('admin_categorie_new') }}" class="btn btn-primary col-2">nouvelle categorie</a>
+			</div>
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -40,10 +43,10 @@
 							<td>{{ categorie.libelle }}</td>
 							<td>{{ categorie.image }}</td>
 							<td>
-								<a href="#" class="btn btn-info">Modifier</a>
+								<a href="{{ path('admin_categorie_edit', {'id': categorie.id}) }}" class="btn btn-info">Modifier</a>
 							</td>
 							<td>
-								<a href="#" class="btn btn-warning">Supprimer</a>
+								<a href="{{ path('admin_categorie_delete', {'id': categorie.id}) }}" class="btn btn-warning">Supprimer</a>
 							</td>
 						</tr>
 					{% endfor %}

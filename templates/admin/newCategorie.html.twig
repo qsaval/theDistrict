@@ -1,0 +1,15 @@
+{% extends "base.html.twig" %}
+
+{% block title %} Ceer une Categorie{% endblock %}
+
+{% block body %}
+<div class="container">
+    <h1 class="my-3">Creer la categorie</h1>
+    {{ form_start(form) }}
+    {{ form_row(form.libelle, {'attr': {'class': 'mt-2'}}) }}
+    {{ form_row(form.image, {'attr': {'class': 'mt-2'}}) }}
+    {{ form_row(form.active, {'attr': {'class': 'mt-2'}}) }}
+    <button type="submit" class="btn btn-primary mt-3">creer</button>
+    {{ form_end(form) }}
+</div>
+{% endblock %}

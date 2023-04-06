@@ -40,7 +40,7 @@ class Commande
     #[ORM\Column(length: 255)]
     private ?string $adresseClient = null;
 
-    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Plat::class)]
+    #[ORM\ManyToMany(targetEntity: Plat::class, inversedBy: 'commandes')]
     private Collection $plat;
 
     public function __construct()
@@ -161,7 +161,6 @@ class Commande
     {
         if (!$this->plat->contains($plat)) {
             $this->plat->add($plat);
-            $plat->setCommande($this);
         }
 
         return $this;
@@ -169,12 +168,7 @@ class Commande
 
     public function removePlat(Plat $plat): self
     {
-        if ($this->plat->removeElement($plat)) {
-            // set the owning side to null (unless already changed)
-            if ($plat->getCommande() === $this) {
-                $plat->setCommande(null);
-            }
-        }
+        $this->plat->removeElement($plat);
 
         return $this;
     }

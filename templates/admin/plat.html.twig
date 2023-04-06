@@ -22,7 +22,10 @@
 			</div>
 		</div>
 		<div class="col-10">
-			<h1>liste des plats</h1>
+			<div class="row">
+				<h1 class="col-10">liste des plats</h1>
+				<a href="{{ path('admin_plat_new') }}" class="btn btn-primary col-2">nouveau plat</a>
+			</div>
 			<table class="table table-hover">
 				<thead>
 					<tr>
@@ -42,10 +45,10 @@
 							<td>{{ plat.description }}</td>
 							<td>{{ plat.prix }},00</td>
 							<td>
-								<a href="#" class="btn btn-info">Modifier</a>
+								<a href="{{ path('admin_plat_edit', {'id': plat.id}) }}" class="btn btn-info">Modifier</a>
 							</td>
 							<td>
-								<a href="#" class="btn btn-warning">Supprimer</a>
+								<a href="{{ path('admin_plat_delete', {'id': plat.id}) }}" class="btn btn-warning">Supprimer</a>
 							</td>
 						</tr>
 					{% endfor %}

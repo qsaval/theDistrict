@@ -5,7 +5,7 @@
 			<span class="navbar-toggler-icon"></span>
 		</button>
 		<div class="collapse navbar-collapse row" id="navbarColor01">
-			<ul class="navbar-nav me-auto col-9">
+			<ul class="navbar-nav me-auto col-lg-9">
 				<li class="nav-item">
 					<a class="nav-link active" href="{{ path('home') }}">Acceuil
 						<span class="visually-hidden">(current)</span>
@@ -21,7 +21,7 @@
 					<a class="nav-link" href="#">Contact</a>
 				</li>
 			</ul>
-			<ul class="navbar-nav me-auto col-3">
+			<ul class="navbar-nav me-auto col-lg-3">
 				{% if app.user %}
 					<li class="nav-item">
 						<a class="nav-link" href="{{ path('app_logout') }}">Deconnexion</a>
