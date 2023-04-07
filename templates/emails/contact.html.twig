@@ -4,13 +4,13 @@
         <meta charset="UTF-8">
     </head>
     <body>
-        <h1>Demande de {{ contact.FullName }}</h1>
+        <h1>Demande de {{ contact.auteur }}</h1>
 
         <p>Email : {{ contact.email }}</p>
-        <p>Sujet : {{ contact.subject }}</p>
+        <p>Sujet : {{ contact.suject }}</p>
         <p>Message :</p>
         <div>
-            {{ contact.message|raw }}
+            {{ contact.contenu|raw }}
         </div>
     </body>
 </html>

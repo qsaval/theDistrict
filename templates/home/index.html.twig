@@ -9,10 +9,13 @@ Acceuil
     <div class="d-flex justify-content-center">
         <img src="{{ asset('media/assiette2.jpg') }}" alt="" class="">
     </div>
-    <form class="d-flex">
-        <input class="form-control me-sm-2" type="search" placeholder="Recherche">
-        <button class="btn btn-secondary my-2 my-sm-0" type="submit">Recherche</button>
-    </form>
+    {{ form_start(form) }}
+    <div class="row">
+        <div class="col-10">{{ form_widget(form.recherche, {'attr': {'placeholder': 'Recherche', 'class': 'mt-4'}}) }}</div>
+        <div class="col-2"> {{ form_widget(form.submit) }}</div>
+    </div>
+    {{ form_end(form) }}
+
     <h1 class="mt-4">Bienvenue sur le site de notre restaurant</h1>
     <p>Notre restaurant propose plusieur plat pour tout les gouts, plusieur categorie de plat sont mise a votre
         disposition</p>
@@ -38,16 +41,17 @@ Acceuil
     </div>
     <div class="row">
         {% for plat in plats %}
-            <div class="col-lg-4 mt-3">
-                <div class="card border-dark" style="height: 35rem">
-                    <div class="card-body">
-                        <h4 class="card-title">{{ plat.libelle }}</h4>
-                        <img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" height="10rem" class="img-fluid img-thumbnail">
-                        <br>
-                        <a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
-                    </div>
+        <div class="col-lg-4 mt-3">
+            <div class="card border-dark" style="height: 35rem">
+                <div class="card-body">
+                    <h4 class="card-title">{{ plat.libelle }}</h4>
+                    <img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" height="10rem"
+                        class="img-fluid img-thumbnail">
+                    <br>
+                    <a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
                 </div>
             </div>
+        </div>
         {% endfor %}
     </div>
 </div>
