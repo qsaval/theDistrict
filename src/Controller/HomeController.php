@@ -51,39 +51,4 @@ class HomeController extends AbstractController
             'form' => $form->createView(),
         ]);
     }
-
-
-    #[Route('/plat', name: 'plat')]
-    
-
-    #[Route('/contact', name: 'contact')]
-    public function contact(Request $request, EntityManagerInterface $manager, MailService $mailService): Response
-    {
-        $contact = new Contact();
-
-        $form = $this->createForm(ContactType::class, $contact);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $contact = $form->getData();
-
-            $manager->persist($contact);
-            $manager->flush();
-
-            $mailService->sendEmail(
-                $contact->getEmail(),
-                $contact->getSuject(),
-                'emails/contact.html.twig',
-                ['contact' => $contact]
-            );
-
-
-            return $this->redirectToRoute('contact');
-        }
-
-        return $this->render('home/contact.html.twig', [
-            'form' => $form->createView()
-        ]);
-    }
-
 }
