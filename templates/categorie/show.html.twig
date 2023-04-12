@@ -7,7 +7,7 @@
 {% block body %}
 	<div class="container">
 		<div class="d-flex justify-content-center">
-			<img src="{{ asset('media/assiette2.jpg') }}" alt="" class="">
+			<img src="{{ asset('media/assiette2.jpg') }}" alt="{{ categories.libelle }}">
 		</div>
 		<h1 class="mt-4">liste des plats de la categorie {{ categories.libelle }}</h1>
 		<div class="row">

@@ -8,17 +8,26 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\TextType;
+use Symfony\Component\Form\Extension\Core\Type\MoneyType;
+use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PlatType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('libelle')
-            ->add('description')
-            ->add('prix')
-            ->add('image')
-            ->add('active')
+            ->add('libelle',TextType::class)
+            ->add('description',TextareaType::class)
+            ->add('prix',MoneyType::class)
+            ->add('image',TextType::class)
+            ->add('active',ChoiceType::class, [
+                'choices' => [
+                    'Yes' => 'Yes',
+                    'No' => 'No'
+                ]
+            ])
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' => 'libelle'
