@@ -33,7 +33,8 @@ class HomeController extends AbstractController
 
             $categorie2 = $Cripo->findAll();
             for ($i=0; $i < count($categorie2); $i++){ 
-                if(strtoupper($categorie2[$i]->getLibelle()) == strtoupper($recherche['recherche'])){                    return $this->redirectToRoute('categorie_show', ['id' => $categorie2[$i]->getId()]);
+                if(strtoupper($categorie2[$i]->getLibelle()) == strtoupper($recherche['recherche'])){  
+                    return $this->redirectToRoute('categorie_show', ['id' => $categorie2[$i]->getId()]);
                 }
             }
 
