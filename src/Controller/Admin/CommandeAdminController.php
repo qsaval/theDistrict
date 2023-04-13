@@ -31,7 +31,7 @@ class CommandeAdminController extends AbstractController
 
         $form->handleRequest($request);
         if ($form->isSubmitted() && $form->isValid()) {
-            $commande = $this->getData($request);
+            $commande = $form->getData($request);
             
             $manager->persist($commande);
             $manager->flush();

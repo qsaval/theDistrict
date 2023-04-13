@@ -15,10 +15,11 @@ class CommandeType extends AbstractType
         $builder
             ->add('etat', ChoiceType::class, [
                 'choices'=>[
-                    '' => '',
+                    'Validée' => 'Validée',
                     'En préparation' => 'En préparation',
                     'En cours de livraison' => 'En cours de livraison',
-                    'Livrée' => 'Livrée'
+                    'Livrée' => 'Livrée',
+                    'Annulée' => 'Annulée'
                 ]
             ])
         ;
