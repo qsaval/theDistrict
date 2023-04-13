@@ -17,7 +17,7 @@ class MailService
         $this->mailer = $mailer;
     }
 
-    public function sendEmail(string $form, string $subject, string $htmlTemplate, array $context, string $to = 'admin@symrecipe.com'):void
+    public function sendEmail(string $form, string $subject, string $htmlTemplate, array $context, string $to = 'admin@thedistrict.com'):void
     {
         $email = (new TemplatedEmail())
             ->from($form)
