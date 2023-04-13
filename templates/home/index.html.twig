@@ -7,7 +7,7 @@ Acceuil
 {% block body %}
 <div class="container">
     <div class="d-flex justify-content-center">
-        <img src="{{ asset('media/assiette2.jpg') }}" alt="" class="">
+        <img src="media/assiette2.jpg" alt="" class="">
     </div>
     {{ form_start(form) }}
     <div class="row">
@@ -28,7 +28,7 @@ Acceuil
             <div class="card border-dark" style="height: 33rem;">
                 <div class="card-body">
                     <h4 class="card-title">{{ categorie.libelle }}</h4>
-                    <img src="{{ asset('media/') }}{{ categorie.image }}" alt="{{ categorie.libelle }}" heigh="330px"
+                    <img src="media/{{ categorie.image }}" alt="{{ categorie.libelle }}" heigh="330px"
                         width="280px">
                     <br>
                     <a href="{{ path('categorie_show', {'id': categorie.id}) }}" class="btn btn-primary mt-2">liste des
@@ -45,7 +45,7 @@ Acceuil
             <div class="card border-dark" style="height: 35rem">
                 <div class="card-body">
                     <h4 class="card-title">{{ plat.libelle }}</h4>
-                    <img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" height="10rem"
+                    <img src="media/{{ plat.image }}" alt="{{ plat.libelle }}" height="10rem"
                         class="img-fluid img-thumbnail">
                     <br>
                     <a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
