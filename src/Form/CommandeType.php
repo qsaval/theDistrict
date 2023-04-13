@@ -2,25 +2,23 @@
 
 namespace App\Form;
 
-use App\Entity\Categorie;
+use App\Entity\Commande;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
-use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
-class CategorieType extends AbstractType
+class CommandeType extends AbstractType
 {
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('libelle',TextType::class)
-            ->add('image',TextType::class)
-            ->add('active',ChoiceType::class, [
-                'choices' =>[
-                    'Yes' => 'Yes',
-                    'No' => 'No'
+            ->add('etat', ChoiceType::class, [
+                'choices'=>[
+                    '' => '',
+                    'En préparation' => 'En préparation',
+                    'En cours de livraison' => 'En cours de livraison',
+                    'Livrée' => 'Livrée'
                 ]
             ])
         ;
@@ -29,7 +27,7 @@ class CategorieType extends AbstractType
     public function configureOptions(OptionsResolver $resolver): void
     {
         $resolver->setDefaults([
-            'data_class' => Categorie::class,
+            'data_class' => Commande::class,
         ]);
     }
 }

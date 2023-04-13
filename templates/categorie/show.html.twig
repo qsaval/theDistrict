@@ -1,28 +1,31 @@
 {% extends "base.html.twig" %}
 
 {% block title %}
-	{{ categories.libelle }}
+{{ categories.libelle }}
 {% endblock %}
 
 {% block body %}
-	<div class="container">
-		<div class="d-flex justify-content-center">
-			<img src="{{ asset('media/assiette2.jpg') }}" alt="{{ categories.libelle }}">
-		</div>
-		<h1 class="mt-4">liste des plats de la categorie {{ categories.libelle }}</h1>
-		<div class="row">
-			{% for plat in plats %}
+<div class="container">
+	<div class="d-flex justify-content-center">
+		<img src="{{ asset('media/assiette2.jpg') }}" alt="{{ categories.libelle }}">
+	</div>
+	<h1 class="mt-4">liste des plats de la categorie {{ categories.libelle }}</h1>
+	<div class="row">
+		{% for plat in plats %}
+			{% if plat.active == 'Yes' %}
 				<div class="col-md-4 mt-3">
 					<div class="card border-dark" style="height: 35rem">
 						<div class="card-body">
 							<h4 class="card-title">{{ plat.libelle }}</h4>
-							<img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" height="10rem" class="img-fluid img-thumbnail">
+							<img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" height="10rem"
+								class="img-fluid img-thumbnail">
 							<br>
 							<a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
 						</div>
 					</div>
 				</div>
-			{% endfor %}
-		</div>
+			{% endif %}
+		{% endfor %}
 	</div>
+</div>
 {% endblock %}

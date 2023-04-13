@@ -30,8 +30,8 @@
 						<th scope="col">Etat</th>
 						<th scope="col">Quantite</th>
 						<th scope="col">total a payer</th>
-
 						<th scope="col">Email</th>
+						<th scope="col">modifier</th>
 						<th scope="col">suppresion</th>
 					</tr>
 				</thead>
@@ -43,6 +43,9 @@
 							<td>{{ commande.quantite }}</td>
 							<td>{{ commande.total }},00</td>
 							<td>{{ commande.emailClient }}</td>
+							<td>
+								<a href="{{ path('admin_commande_edit', {'id': commande.id}) }}" class="btn btn-info">Modifier</a>
+							</td>
 							<td>
 								<a href="{{ path('admin_commande_delete', {'id': commande.id}) }}" class="btn btn-warning">Supprimer</a>
 							</td>

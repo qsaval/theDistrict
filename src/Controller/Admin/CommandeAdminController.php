@@ -3,8 +3,10 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Commande;
+use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -18,6 +20,27 @@ class CommandeAdminController extends AbstractController
         $commande = $ripo->findAll();
         return $this->render('admin/commande/commande.html.twig', [
             'commandes' => $commande,
+        ]);
+    }
+
+    #[Route('/admin/commande/edition/{id}', name: 'admin_commande_edit')]
+    #[IsGranted('ROLE_ADMIN')]
+    public function editCommande(Commande $commande, Request $request, EntityManagerInterface $manager): Response
+    {
+        $form = $this->createForm(CommandeType::class, $commande);
+
+        $form->handleRequest($request);
+        if ($form->isSubmitted() && $form->isValid()) {
+            $commande = $this->getData($request);
+            
+            $manager->persist($commande);
+            $manager->flush();
+
+            return $this->redirectToRoute('admin_commande');
+        }
+
+        return $this->render('admin/commande/editCommande.html.twig', [
+           'form' => $form->createView(),
         ]);
     }
 

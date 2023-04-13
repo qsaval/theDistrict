@@ -13,16 +13,18 @@
 		<p>Bon choix a vous:</p>
 		<div class="row">
 			{% for plat in plats %}
-				<div class="col-lg-4 mt-3">
-					<div class="card border-dark" style="height: 35rem">
-						<div class="card-body">
-							<h4 class="card-title">{{ plat.libelle }}</h4>
-							<img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" height="10rem" class="img-fluid img-thumbnail">
-							<br>
-							<a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
+				{% if plat.active == 'Yes' %}
+					<div class="col-lg-4 mt-3">
+						<div class="card border-dark" style="height: 35rem">
+							<div class="card-body">
+								<h4 class="card-title">{{ plat.libelle }}</h4>
+								<img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" height="10rem" class="img-fluid img-thumbnail">
+								<br>
+								<a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
+							</div>
 						</div>
 					</div>
-				</div>
+				{% endif %}
 			{% endfor %}
 		</div>
 		<div class="navigation d-flex justify-content-center mt-4">
