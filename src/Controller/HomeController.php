@@ -22,8 +22,8 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(CategorieRepository $Cripo, PlatRepository $Pripo, Request $request): Response
     {
-        $categorie = $Cripo->findBy(['favori' => 'Yes']);
-        $plat = $Pripo->findBy(['favori' => 'Yes']);
+        $categorie = $Cripo->findBy(['active' => true]);
+        $plat = $Pripo->findBy(['active' => true]);
 
         $form = $this->createForm(RechercheType::class);
 

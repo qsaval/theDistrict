@@ -17,159 +17,102 @@ class Commande
     private ?int $id = null;
 
     #[ORM\Column]
-    private ?int $quantite = null;
+    private ?\DateTimeImmutable $date_commande = null;
+
+    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    private ?string $total = null;
 
     #[ORM\Column]
-    private ?int $total = null;
+    private ?int $etat = null;
 
-    #[ORM\Column(type: Types::DATETIME_MUTABLE)]
-    private ?\DateTimeInterface $dateCommande = null;
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Detail::class)]
+    private Collection $detail;
 
-    #[ORM\Column(length: 255)]
-    private ?string $etat = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $nomClient = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $telephoneClient = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $emailClient = null;
-
-    #[ORM\Column(length: 255)]
-    private ?string $adresseClient = null;
-
-    #[ORM\ManyToMany(targetEntity: Plat::class, inversedBy: 'commandes')]
-    private Collection $plat;
+    #[ORM\ManyToOne(inversedBy: 'commande')]
+    private ?User $user = null;
 
     public function __construct()
     {
-        $this->plat = new ArrayCollection();
+        $this->detail = new ArrayCollection();
     }
 
-    public function getId(): ?int
+    public function getDateCommande(): ?\DateTimeImmutable
     {
-        return $this->id;
+        return $this->date_commande;
     }
 
-    public function getQuantite(): ?int
+    public function setDateCommande(\DateTimeImmutable $date_commande): self
     {
-        return $this->quantite;
-    }
-
-    public function setQuantite(int $quantite): self
-    {
-        $this->quantite = $quantite;
+        $this->date_commande = $date_commande;
 
         return $this;
     }
 
-    public function getTotal(): ?int
+    public function getTotal(): ?string
     {
         return $this->total;
     }
 
-    public function setTotal(int $total): self
+    public function setTotal(string $total): self
     {
         $this->total = $total;
 
         return $this;
     }
 
-    public function getDateCommande(): ?\DateTimeInterface
-    {
-        return $this->dateCommande;
-    }
-
-    public function setDateCommande(\DateTimeInterface $dateCommande): self
-    {
-        $this->dateCommande = $dateCommande;
-
-        return $this;
-    }
-
-    public function getEtat(): ?string
+    public function getEtat(): ?int
     {
         return $this->etat;
     }
 
-    public function setEtat(string $etat): self
+    public function setEtat(int $etat): self
     {
         $this->etat = $etat;
 
         return $this;
     }
 
-    public function getNomClient(): ?string
-    {
-        return $this->nomClient;
-    }
-
-    public function setNomClient(string $nomClient): self
-    {
-        $this->nomClient = $nomClient;
-
-        return $this;
-    }
-
-    public function getTelephoneClient(): ?string
-    {
-        return $this->telephoneClient;
-    }
-
-    public function setTelephoneClient(string $telephoneClient): self
-    {
-        $this->telephoneClient = $telephoneClient;
-
-        return $this;
-    }
-
-    public function getEmailClient(): ?string
-    {
-        return $this->emailClient;
-    }
-
-    public function setEmailClient(string $emailClient): self
-    {
-        $this->emailClient = $emailClient;
-
-        return $this;
-    }
-
-    public function getAdresseClient(): ?string
-    {
-        return $this->adresseClient;
-    }
-
-    public function setAdresseClient(string $adresseClient): self
-    {
-        $this->adresseClient = $adresseClient;
-
-        return $this;
-    }
-
     /**
-     * @return Collection<int, Plat>
+     * @return Collection<int, Detail>
      */
-    public function getPlat(): Collection
+    public function getDetail(): Collection
     {
-        return $this->plat;
+        return $this->detail;
     }
 
-    public function addPlat(Plat $plat): self
+    public function addDetail(Detail $detail): self
     {
-        if (!$this->plat->contains($plat)) {
-            $this->plat->add($plat);
+        if (!$this->detail->contains($detail)) {
+            $this->detail->add($detail);
+            $detail->setCommande($this);
         }
 
         return $this;
     }
 
-    public function removePlat(Plat $plat): self
+    public function removeDetail(Detail $detail): self
     {
-        $this->plat->removeElement($plat);
+        if ($this->detail->removeElement($detail)) {
+            // set the owning side to null (unless already changed)
+            if ($detail->getCommande() === $this) {
+                $detail->setCommande(null);
+            }
+        }
 
         return $this;
     }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): self
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+
 }

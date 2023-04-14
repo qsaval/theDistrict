@@ -15,29 +15,21 @@ class Categorie
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $libelle = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $image = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $active = null;
+    #[ORM\Column]
+    private ?bool $active = null;
 
     #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Plat::class)]
     private Collection $plats;
 
-    #[ORM\Column(length: 255)]
-    private ?string $favori = null;
-
     public function __construct()
     {
         $this->plats = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
     }
 
     public function getLibelle(): ?string
@@ -64,12 +56,12 @@ class Categorie
         return $this;
     }
 
-    public function getActive(): ?string
+    public function isActive(): ?bool
     {
         return $this->active;
     }
 
-    public function setActive(string $active): self
+    public function setActive(bool $active): self
     {
         $this->active = $active;
 
@@ -106,15 +98,12 @@ class Categorie
         return $this;
     }
 
-    public function getFavori(): ?string
-    {
-        return $this->favori;
-    }
 
-    public function setFavori(string $favori): self
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
     {
-        $this->favori = $favori;
-
-        return $this;
+        return $this->id;
     }
 }

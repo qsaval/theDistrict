@@ -16,38 +16,30 @@ class Plat
     #[ORM\Column]
     private ?int $id = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 100)]
     private ?string $libelle = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
-    #[ORM\Column]
-    private ?float $prix = null;
+    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
+    private ?string $prix = null;
 
-    #[ORM\Column(length: 255)]
+    #[ORM\Column(length: 50)]
     private ?string $image = null;
 
-    #[ORM\Column(length: 255)]
-    private ?string $active = null;
+    #[ORM\Column]
+    private ?bool $active = null;
 
     #[ORM\ManyToOne(inversedBy: 'plats')]
     private ?Categorie $categorie = null;
 
-    #[ORM\ManyToMany(targetEntity: Commande::class, mappedBy: 'plat')]
-    private Collection $commandes;
-
-    #[ORM\Column(length: 255)]
-    private ?string $favori = null;
+    #[ORM\OneToMany(mappedBy: 'plat', targetEntity: Detail::class)]
+    private Collection $details;
 
     public function __construct()
     {
-        $this->commandes = new ArrayCollection();
-    }
-
-    public function getId(): ?int
-    {
-        return $this->id;
+        $this->details = new ArrayCollection();
     }
 
     public function getLibelle(): ?string
@@ -74,12 +66,12 @@ class Plat
         return $this;
     }
 
-    public function getPrix(): ?float
+    public function getPrix(): ?string
     {
         return $this->prix;
     }
 
-    public function setPrix(float $prix): self
+    public function setPrix(string $prix): self
     {
         $this->prix = $prix;
 
@@ -98,12 +90,12 @@ class Plat
         return $this;
     }
 
-    public function getActive(): ?string
+    public function isActive(): ?bool
     {
         return $this->active;
     }
 
-    public function setActive(string $active): self
+    public function setActive(bool $active): self
     {
         $this->active = $active;
 
@@ -123,42 +115,42 @@ class Plat
     }
 
     /**
-     * @return Collection<int, Commande>
+     * @return Collection<int, Detail>
      */
-    public function getCommandes(): Collection
+    public function getDetails(): Collection
     {
-        return $this->commandes;
+        return $this->details;
     }
 
-    public function addCommande(Commande $commande): self
+    public function addDetail(Detail $detail): self
     {
-        if (!$this->commandes->contains($commande)) {
-            $this->commandes->add($commande);
-            $commande->addPlat($this);
+        if (!$this->details->contains($detail)) {
+            $this->details->add($detail);
+            $detail->setPlat($this);
         }
 
         return $this;
     }
 
-    public function removeCommande(Commande $commande): self
+    public function removeDetail(Detail $detail): self
     {
-        if ($this->commandes->removeElement($commande)) {
-            $commande->removePlat($this);
+        if ($this->details->removeElement($detail)) {
+            // set the owning side to null (unless already changed)
+            if ($detail->getPlat() === $this) {
+                $detail->setPlat(null);
+            }
         }
 
         return $this;
     }
 
-    public function getFavori(): ?string
+
+
+    /**
+     * Get the value of id
+     */ 
+    public function getId()
     {
-        return $this->favori;
+        return $this->id;
     }
-
-    public function setFavori(string $favori): self
-    {
-        $this->favori = $favori;
-
-        return $this;
-    }
-
 }
