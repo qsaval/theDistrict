@@ -162,7 +162,7 @@ class AppFixtures extends Fixture
             $plat10->setLibelle('Tagliatelles au saumon')
                   ->setDescription('Découvrez notre recette délicieuse de tagliatelles au saumon frais et à la crème qui qui vous assure un véritable régal!')
                   ->setPrix(12)
-                  ->setimage('tagliatelles_saumon.webp')
+                  ->setimage('tagliatelles-saumon.webp')
                   ->setCategorie($categorie4)
                   ->setActive('Yes')
                   ->setFavori('No');
