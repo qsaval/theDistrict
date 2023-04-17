@@ -4,6 +4,7 @@ namespace App\DataFixtures;
 
 use App\Entity\Categorie;
 use App\Entity\Commande;
+use App\Entity\Detail;
 use App\Entity\Plat;
 use Doctrine\Bundle\FixturesBundle\Fixture;
 use Doctrine\Persistence\ObjectManager;
@@ -149,6 +150,10 @@ class AppFixtures extends Fixture
                   ->setCategorie($categorie4)
                   ->setActive(true);
             $manager->persist($plat10);
+
+            $detail1 = new Detail();
+            $detail1->getQuantite(4);
+            $detail1->getPlat($plat1);
 
             $manager->flush();
       }
