@@ -7,7 +7,7 @@
 {% block body %}
 	<div class="container">
 		<div class="d-flex justify-content-center">
-			<img src="media/assiette2.jpg" alt="" class="">
+			<img src="{{ asset('media/assiette2.jpg') }}" alt="logo" class="">
 		</div>
 		<h1 class=" mt-4">Liste des catégories</h1>
 		<p>Bon choix a vous:</p>
@@ -18,7 +18,7 @@
 						<div class="card border-dark" style="height: 33rem;">
 							<div class="card-body">
 								<h4 class="card-title">{{ categorie.libelle }}</h4>
-								<img src="media/{{ categorie.image }}" alt="{{ categorie.libelle }}" heigh="330px" width="280px">
+								<img src="{{ asset('media/') }}{{ categorie.image }}" alt="{{ categorie.libelle }}" heigh="330px" width="280px">
 								<br>
 								<a href="{{ path('categorie_show', {'id': categorie.id}) }}" class="btn btn-primary mt-2">liste des Plats</a>
 							</div>
