@@ -2,12 +2,13 @@
 
 namespace App\DataFixtures;
 
-use App\Entity\Categorie;
-use App\Entity\Commande;
-use App\Entity\Detail;
 use App\Entity\Plat;
-use Doctrine\Bundle\FixturesBundle\Fixture;
+use App\Entity\User;
+use App\Entity\Detail;
+use App\Entity\Commande;
+use App\Entity\Categorie;
 use Doctrine\Persistence\ObjectManager;
+use Doctrine\Bundle\FixturesBundle\Fixture;
 
 class AppFixtures extends Fixture
 {
@@ -152,8 +153,189 @@ class AppFixtures extends Fixture
             $manager->persist($plat10);
 
             $detail1 = new Detail();
-            $detail1->getQuantite(4);
-            $detail1->getPlat($plat1);
+            $detail1->setQuantite(4)
+                  ->setPlat($plat1);
+            $manager->persist($detail1);
+
+            $detail2 = new Detail();
+            $detail2->setQuantite(2)
+                  ->setPlat($plat2);
+            $manager->persist($detail2);
+
+            $detail3 = new Detail();
+            $detail3->setQuantite(1)
+                  ->setPlat($plat2);
+            $manager->persist($detail3);
+
+            $detail4 = new Detail();
+            $detail4->setQuantite(1);
+            $detail4->setPlat($plat3);
+            $manager->persist($detail4);
+
+            $detail5 = new Detail();
+            $detail5->setQuantite(2)
+                  ->setPlat($plat4);
+            $manager->persist($detail5);
+
+            $detail6 = new Detail();
+            $detail6->setQuantite(1)
+                  ->setPlat($plat7);
+            $manager->persist($detail6);
+
+            $detail7 = new Detail();
+            $detail7->setQuantite(4)
+                  ->setPlat($plat3);
+            $manager->persist($detail7);
+
+            $detail8 = new Detail();
+            $detail8->setQuantite(1)
+                  ->setPlat($plat9);
+            $manager->persist($detail8);
+
+            $commande1 = new Commande();
+            $commande1->setDateCommande(new \DateTimeImmutable('2020-11-30 03:52:43'))
+                  ->setTotal(16)
+                  ->setEtat(3)
+                  ->addDetail($detail1);
+            $manager->persist($commande1);
+
+            $commande2 = new Commande();
+            $commande2->setDateCommande(new \DateTimeImmutable('2020-11-30 04:07:17'))
+                  ->setTotal(20)
+                  ->setEtat(3)
+                  ->addDetail($detail2);
+            $manager->persist($commande2);
+
+            $commande3 = new Commande();
+            $commande3->setDateCommande(new \DateTimeImmutable('2021-05-04 01:35:34'))
+                  ->setTotal(10)
+                  ->setEtat(3)
+                  ->addDetail($detail3);
+            $manager->persist($commande3);
+
+            $commande4 = new Commande();
+            $commande4->setDateCommande(new \DateTimeImmutable('2021-07-20 06:10:37'))
+                  ->setTotal(7)
+                  ->setEtat(3)
+                  ->addDetail($detail4);
+            $manager->persist($commande4);
+
+            $commande5 = new Commande();
+            $commande5->setDateCommande(new \DateTimeImmutable('2021-07-20 06:40:21'))
+                  ->setTotal(8)
+                  ->setEtat(2)
+                  ->addDetail($detail5);
+            $manager->persist($commande5);
+
+            $commande6 = new Commande();
+            $commande6->setDateCommande(new \DateTimeImmutable('2021-07-20 06:40:57'))
+                  ->setTotal(6)
+                  ->setEtat(1)
+                  ->addDetail($detail6);
+            $manager->persist($commande6);
+
+            $commande7 = new Commande();
+            $commande7->setDateCommande(new \DateTimeImmutable('2021-07-20 07:06:06'))
+                  ->setTotal(20)
+                  ->setEtat(4)
+                  ->addDetail($detail7);
+            $manager->persist($commande7);
+
+            $commande8 = new Commande();
+            $commande8->setDateCommande(new \DateTimeImmutable('2021-07-20 07:11:06'))
+                  ->setTotal(12)
+                  ->setEtat(3)
+                  ->addDetail($detail8);
+            $manager->persist($commande8);
+
+            $user1 = new User();
+            $user1->setNom('Administrateur')
+                  ->setPrenom('theDistrict')
+                  ->setEmail('admin@thedistrict.com')
+                  ->setTelephone('')
+                  ->setPassword(password_hash('password', PASSWORD_DEFAULT))
+                  ->setRoles(['ROLE_ADMIN','ROLE_USER']);
+            $manager->persist($user1);
+
+            $user1 = new User();
+            $user1->setNom('Kelly')
+                  ->setPrenom('Dillard')
+                  ->setEmail('kelly@gmail.com')
+                  ->setTelephone('7896547800')
+                  ->addCommande($commande1)
+                  ->setPassword(password_hash('password', PASSWORD_DEFAULT))
+                  ->setRoles(['ROLE_USER']);
+            $manager->persist($user1);
+
+            $user2 = new User();
+            $user2->setNom('Thomas')
+                  ->setPrenom('Gilchrist')
+                  ->setEmail('thom@gmail.com')
+                  ->setTelephone('7410001450')
+                  ->addCommande($commande2)
+                  ->setPassword(password_hash('password', PASSWORD_DEFAULT))
+                  ->setRoles(['ROLE_USER']);
+            $manager->persist($user2);
+
+            $user3 = new User();
+            $user3->setNom('Martha')
+                  ->setPrenom('Woods')
+                  ->setEmail('martha@gmail.com')
+                  ->setTelephone('78540001200')
+                  ->addCommande($commande3)
+                  ->setPassword(password_hash('password', PASSWORD_DEFAULT))
+                  ->setRoles(['ROLE_USER']);
+            $manager->persist($user3);
+
+            $user4 = new User();
+            $user4->setNom('Charlie')
+                  ->setPrenom('Dupont')
+                  ->setEmail('charlie@gmail.com')
+                  ->setTelephone('7458965550')
+                  ->addCommande($commande4)
+                  ->setPassword(password_hash('password', PASSWORD_DEFAULT))
+                  ->setRoles(['ROLE_USER']);
+            $manager->persist($user4);
+
+            $user5 = new User();
+            $user5->setNom('Claudia')
+                  ->setPrenom('Hedley')
+                  ->setEmail('hedley@gmail.com')
+                  ->setTelephone('7451114400')
+                  ->addCommande($commande5)
+                  ->setPassword(password_hash('password', PASSWORD_DEFAULT))
+                  ->setRoles(['ROLE_USER']);
+            $manager->persist($user5);
+
+            $user6 = new User();
+            $user6->setNom('Vernon')
+                  ->setPrenom('Vargas')
+                  ->setEmail('vonno@gmail.com')
+                  ->setTelephone('7414744440')
+                  ->addCommande($commande6)
+                  ->setPassword(password_hash('password', PASSWORD_DEFAULT))
+                  ->setRoles(['ROLE_USER']);
+            $manager->persist($user6);
+
+            $user7 = new User();
+            $user7->setNom('Carlos')
+                  ->setPrenom('Grayson')
+                  ->setEmail('carlos@gmail.com')
+                  ->setTelephone('7401456980')
+                  ->addCommande($commande7)
+                  ->setPassword(password_hash('password', PASSWORD_DEFAULT))
+                  ->setRoles(['ROLE_USER']);
+            $manager->persist($user7);
+
+            $user8 = new User();
+            $user8->setNom('Jonathan')
+                  ->setPrenom('Caudill')
+                  ->setEmail('jonathan@gmail.com')
+                  ->setTelephone('7410256996')
+                  ->addCommande($commande8)
+                  ->setPassword(password_hash('password', PASSWORD_DEFAULT))
+                  ->setRoles(['ROLE_USER']);
+            $manager->persist($user8);
 
             $manager->flush();
       }
