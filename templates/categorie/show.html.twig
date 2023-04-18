@@ -11,7 +11,7 @@
 	</div>
 	<h1 class="mt-4">liste des plats de la categorie {{ categories.libelle }}</h1>
 	<div class="row">
-		{% for plat in plats %}
+		{% for plat in categories.plats %}
 			{% if plat.active == 'Yes' %}
 				<div class="col-md-4 mt-3">
 					<div class="card border-dark" style="height: 35rem">

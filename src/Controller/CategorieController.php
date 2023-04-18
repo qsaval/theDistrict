@@ -28,12 +28,10 @@ class CategorieController extends AbstractController
     }
 
     #[Route('/categorie/{id}', name: 'categorie_show')]
-    public function show(Categorie $categorie , PlatRepository $ripo): Response
+    public function show(Categorie $categorie): Response
     {
-        $plat = $ripo->findBy(['categorie' => $categorie]);
         return $this->render('categorie/show.html.twig', [
             'categories' => $categorie,
-            'plats' => $plat,
         ]);
     }
 }

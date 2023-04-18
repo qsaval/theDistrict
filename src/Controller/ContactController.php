@@ -19,7 +19,7 @@ class ContactController extends AbstractController
         $contact = new Contact();
 
         if($this->getUser()){
-            $contact->setAuteur($this->getUser()->getNomPrenom())
+            $contact->setAuteur($this->getUser()->getNom() . " " . $this->getUser()->getPrenom())
                     ->setEmail($this->getUser()->getEmail());
         }
 

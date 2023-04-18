@@ -18,7 +18,7 @@
 				<div class="mx-4 text-xl">
 					<p>Prix: {{ plat.prix }}€</p>
 					<p>{{ plat.description|raw }}</p>
-					<button class="btn btn-primary">panier</button>
+					<a href="{{ path('cart_add', {'id': plat.id}) }}" class="btn btn-primary">panier</a>
 				</div>
 			</div>
 		</div>
