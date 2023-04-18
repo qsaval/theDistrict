@@ -28,7 +28,7 @@
 					<tr>
 						<th scope="col">Numéro</th>
 						<th scope="col">Etat</th>
-						<th scope="col">Quantite</th>
+						<th scope="col">Date de commande</th>
 						<th scope="col">total a payer</th>
 						<th scope="col">Email</th>
 						<th scope="col">modifier</th>
@@ -39,10 +39,28 @@
 					{% for commande in commandes %}
 						<tr class="table-primary">
 							<th scope="row">{{ commande.id }}</th>
-							<td>{{ commande.etat }}</td>
-							<td>{{ commande.quantite }}</td>
-							<td>{{ commande.total }},00</td>
-							<td>{{ commande.emailClient }}</td>
+							<td>
+								{% if commande.etat == 0 %}
+									Validée
+								{% else %}
+									{% if commande.etat == 1 %}
+										En préparation
+									{% else %}
+										{% if commande.etat == 2 %}
+											En cours de livraison
+										{% else %}
+											{% if commande.etat == 3 %}
+												Livrée
+											{% else %}
+												Annulée		
+											{% endif %}		
+										{% endif %}		
+									{% endif %}
+								{% endif %}
+							</td>
+							<td>{{ commande.dateCommande|date('d/m/Y') }}</td>
+							<td>{{ commande.total }}€</td>
+							<td>{{ commande.user.email }}</td>
 							<td>
 								<a href="{{ path('admin_commande_edit', {'id': commande.id}) }}" class="btn btn-info">Modifier</a>
 							</td>
