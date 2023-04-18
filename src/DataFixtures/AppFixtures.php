@@ -248,14 +248,14 @@ class AppFixtures extends Fixture
                   ->addDetail($detail8);
             $manager->persist($commande8);
 
-            $user1 = new User();
-            $user1->setNom('Administrateur')
+            $user = new User();
+            $user->setNom('Administrateur')
                   ->setPrenom('theDistrict')
                   ->setEmail('admin@thedistrict.com')
                   ->setTelephone('')
                   ->setPassword(password_hash('password', PASSWORD_DEFAULT))
                   ->setRoles(['ROLE_ADMIN','ROLE_USER']);
-            $manager->persist($user1);
+            $manager->persist($user);
 
             $user1 = new User();
             $user1->setNom('Kelly')
