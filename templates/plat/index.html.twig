@@ -18,9 +18,13 @@
 						<div class="card border-dark" style="height: 35rem">
 							<div class="card-body">
 								<h4 class="card-title">{{ plat.libelle }}</h4>
-								<img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" height="10rem" class="img-fluid img-thumbnail">
-								<br>
-								<a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
+								<div class="d-flex justify-content-center">
+									<img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" height="10rem" class="img-fluid img-thumbnail">
+								</div>
+								<div class="d-flex justify-content-between">
+									<a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
+									<a href="{{ path('cart_add', {'id': plat.id}) }}" class="btn btn-primary">panier</a>
+								</div>
 							</div>
 						</div>
 					</div>
