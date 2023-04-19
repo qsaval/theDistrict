@@ -21,7 +21,7 @@ class CartController extends AbstractController
 {
     #[Route('/mon-panier', name: 'cart')]
     #[IsGranted('ROLE_USER')]
-    public function index(CartService $carteService, Request $request, PlatRepository $repo, EntityManagerInterface $em): Response
+    public function index(CartService $carteService): Response
     {
         return $this->render('cart/index.html.twig', [
             'cart' => $carteService->getTotal()
@@ -30,7 +30,7 @@ class CartController extends AbstractController
 
     #[Route('/mon-panier/valide', name: 'cart_valide')]
     #[IsGranted('ROLE_USER')]
-    public function valide(Request $request, PlatRepository $repo, EntityManagerInterface $em, MailService $mailService): Response
+    public function valide(CartService $carteService, Request $request, PlatRepository $repo, EntityManagerInterface $em, MailService $mailService): Response
     {
         $session = $request->getSession();
         $panier = $session->get('cart', []);
@@ -49,9 +49,6 @@ class CartController extends AbstractController
             $commande->addDetail($detail);
 
             $total = $total + ($plat->getPrix() * $quantite);
-
-            
-
         }
         $commande->setTotal($total)
             ->setEtat(0)
@@ -68,6 +65,8 @@ class CartController extends AbstractController
             'emails/valide.html.twig',
             $user->getEmail()
         );
+
+        $carteService->removeCartAll();
 
         return $this->redirectToRoute('home');
     }
@@ -90,7 +89,7 @@ class CartController extends AbstractController
 
     #[Route('/mon-panier/decrease/{id<\d+>}', name: 'cart_decrease')]
     #[IsGranted('ROLE_USER')]
-    public function decrease(CartService $cartService, $id): RedirectResponse
+    public function decrease(CartService $cartService, int $id): RedirectResponse
     {
         $cartService->decrease($id);
         return $this->redirectToRoute('cart');

@@ -84,7 +84,7 @@ class AppFixtures extends Fixture
             $plat3->setLibelle('Buffalo Chicken Wrap')
                   ->setDescription('Du bon filet de poulet mariné dans notre spécialité sucrée & épicée, enveloppé dans une tortilla blanche douce faite maison.')
                   ->setPrix(5)
-                  ->setimage('buffalo-chicken.webp')
+                  ->setimage('buffalo-chicken.jpg')
                   ->setCategorie($categorie3)
                   ->setActive(true);
             $manager->persist($plat3);
