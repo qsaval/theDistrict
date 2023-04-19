@@ -12,7 +12,9 @@
                     <p>Ajouter d'autre plats disponibles sur le site <a href="{{ path('plat') }}">voir les plat</a></p>
                     <a href="{{ path('cart_removeAll') }}">Suprimer tout mon panier</a>
                     {% set total = null %}
+                    {% set quantite = null %}
                     {% for plat in cart %}
+                    {% set quantite = quantite + plat.quantite %}
                     {% set total = total + (plat.plat.prix * plat.quantite) %}
                         <div class="d-sm-flex align-items-center border-top py-4">
                             <div class="w-100 pt-1 ps-sm-4">
@@ -44,7 +46,7 @@
                         </div>
                     {% endfor %}
                     <ul class="list-unstyled py-3 mb-0">
-                        <li class="d-flex justify-content-between mb-2">Nombre de plat:<span class="fw-semibold ms-2">{{ cart|length }}</span></li>
+                        <li class="d-flex justify-content-between mb-2">Nombre de plat:<span class="fw-semibold ms-2">{{ quantite }}</span></li>
                     </ul>
                     <div class="d-flex align-items-center justify-content-between border-top fs-xl pt-4">Total:<span class="fs-3 fw-semibold text-dark ms-2">{{ total|number_format(2,',','.') }}€</span></div>
                     <a href="{{ path('cart_valide') }}" class="btn btn-lg btn-primary w-100 w-sm-auto mt-4">Valider mon panier</a>
