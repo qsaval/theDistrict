@@ -1,6 +1,6 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Hello CartController!{% endblock %}
+{% block title %}Mon panier{% endblock %}
 
 {% block body %}
 <main class="page-wrapper">
@@ -22,17 +22,19 @@
                                         <p class="mb-2">{{ plat.plat.description }}</p>
                                     </div>
                                     <div class="text-end ms-auto">
-                                        <div class="fs-5 mb-2">{{ total|number_format(2,',','.') }}€</div>
+                                        <div class="fs-5 mb-2">{{ (plat.plat.prix * plat.quantite)|number_format(2,',','.') }}€</div>
                                     </div>
                                 </div>
                             </div>
-                            <div class="count-input ms-3 d-flex">
+                        </div>
+                        <div class="row mb-4">
+                            <div class="ms-3 d-flex col-sm-2 col-">
                                 <a href="{{ path('cart_decrease', {id: plat.plat.id}) }}" class="btn btn-icon fs-xl" data-decrement="">-</a>
                                 <input class="form-control" type="number" value="{{ plat.quantite }}" readonly>
                                 <a href="{{ path('cart_add', {id: plat.plat.id}) }}" class="btn btn-icon fs-xl">+</a>
                             </div>
-                            <div class="nav justify-content-end mt-n5 mt-sm-n3">
-                                <a href="{{ path('cart_remove', {id: plat.plat.id}) }}" class="nav-link fs-xl p-2" data-bs-toggle="tooltip" title="Remove">
+                            <div class="nav justify-content-end col-sm-2">
+                                <a href="{{ path('cart_remove', {id: plat.plat.id}) }}" class="nav-link " data-bs-toggle="tooltip" title="Remove">
                                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
                                         <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5Zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6Z"/>
                                         <path d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1ZM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118ZM2.5 3h11V2h-11v1Z"/>
@@ -45,7 +47,7 @@
                         <li class="d-flex justify-content-between mb-2">Nombre de plat:<span class="fw-semibold ms-2">{{ cart|length }}</span></li>
                     </ul>
                     <div class="d-flex align-items-center justify-content-between border-top fs-xl pt-4">Total:<span class="fs-3 fw-semibold text-dark ms-2">{{ total|number_format(2,',','.') }}€</span></div>
-                    <button type="submit" class="btn btn-lg btn-primary w-100 w-sm-auto mt-4">Valider mon panier</button>
+                    <a href="{{ path('cart_valide') }}" class="btn btn-lg btn-primary w-100 w-sm-auto mt-4">Valider mon panier</a>
                 </div>
             </div>
         </div>

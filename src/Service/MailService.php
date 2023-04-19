@@ -28,4 +28,15 @@ class MailService
 
         $this->mailer->send($email);  
     }
+
+    public function sendValide(string $form, string $subject, string $htmlTemplate, string $to):void
+    {
+        $email = (new TemplatedEmail())
+            ->from($form)
+            ->to($to)
+            ->subject($subject)
+            ->htmlTemplate($htmlTemplate);
+
+        $this->mailer->send($email);  
+    }
 }
