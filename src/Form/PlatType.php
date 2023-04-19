@@ -10,7 +10,7 @@ use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\OptionsResolver\OptionsResolver;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
-use Symfony\Component\Form\Extension\Core\Type\ChoiceType;
+use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 use Symfony\Component\Form\Extension\Core\Type\TextareaType;
 
 class PlatType extends AbstractType
@@ -22,12 +22,7 @@ class PlatType extends AbstractType
             ->add('description',TextareaType::class)
             ->add('prix',MoneyType::class)
             ->add('image',TextType::class)
-            ->add('active',ChoiceType::class, [
-                'choices' => [
-                    'Yes' => 'Yes',
-                    'No' => 'No'
-                ]
-            ])
+            ->add('active',CheckboxType::class)
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' => 'libelle'
