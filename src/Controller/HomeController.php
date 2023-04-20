@@ -47,16 +47,16 @@ class HomeController extends AbstractController
             $recherche = $form->getData();
             
             $categorie2 = $Cripo->findAll();
-            for ($i=0; $i < count($categorie2); $i++){ 
+            for ($k=0; $k < count($categorie2); $k++){ 
                 if(strtoupper($categorie2[$i]->getLibelle()) == strtoupper($recherche['recherche'])){  
-                    return $this->redirectToRoute('categorie_show', ['id' => $categorie2[$i]->getId()]);
+                    return $this->redirectToRoute('categorie_show', ['id' => $categorie2[$k]->getId()]);
                 }
             }
             
             $plat2 = $Pripo->findAll();
-            for ($j=0; $j < count($plat2); $j++){ 
+            for ($z=0; $z < count($plat2); $z++){ 
                 if(strtoupper($plat2[$j]->getLibelle()) == strtoupper($recherche['recherche'])){
-                    return $this->redirectToRoute('plat_show', ['id' => $plat2[$j]->getId()]);
+                    return $this->redirectToRoute('plat_show', ['id' => $plat2[$z]->getId()]);
                 }
             }
         };

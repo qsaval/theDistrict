@@ -14,7 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategorieAdminController extends AbstractController
 {
     #[Route('/admin/categorie', name: 'admin_categorie')]
-    #[IsGranted('ROLE_ADMIN')]
     public function categorie(CategorieRepository $ripo): Response
     {
         $categorie = $ripo->findAll();
@@ -24,7 +23,6 @@ class CategorieAdminController extends AbstractController
     }
 
     #[Route('/admin/categorie/edition/{id}', name: 'admin_categorie_edit')]
-    #[IsGranted('ROLE_ADMIN')]
     public function editCategorie(Categorie $categorie, Request $request, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(CategorieType::class, $categorie);
@@ -45,7 +43,6 @@ class CategorieAdminController extends AbstractController
     }
 
     #[Route('/admin/categorie/new', name: 'admin_categorie_new')]
-    #[IsGranted('ROLE_ADMIN')]
     public function newCategorie(Request $request, EntityManagerInterface $manager): Response
     {
         $categorie = new Categorie();
@@ -68,7 +65,6 @@ class CategorieAdminController extends AbstractController
     }
 
     #[Route('/admin/categorie/supresion/{id}', name: 'admin_categorie_delete')]
-    #[IsGranted('ROLE_ADMIN')]
     public function deleteCategorie(Categorie $categorie, EntityManagerInterface $manager): Response
     {
         $manager->remove($categorie);

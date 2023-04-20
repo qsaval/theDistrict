@@ -14,7 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PlatAdminController extends AbstractController
 {
     #[Route('/admin/plat', name: 'admin_plat')]
-    #[IsGranted('ROLE_ADMIN')]
     public function plat(PlatRepository $ripo): Response
     {
         $plat = $ripo->findAll();
@@ -24,7 +23,6 @@ class PlatAdminController extends AbstractController
     }
 
     #[Route('/admin/plat/edition/{id}', name: 'admin_plat_edit')]
-    #[IsGranted('ROLE_ADMIN')]
     public function editPlat(Plat $plat, Request $request, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(PlatType::class, $plat);
@@ -45,7 +43,6 @@ class PlatAdminController extends AbstractController
     }
 
     #[Route('/admin/plat/new', name: 'admin_plat_new')]
-    #[IsGranted('ROLE_ADMIN')]
     public function newPlat(Request $request, EntityManagerInterface $manager): Response
     {
         $plat = new Plat();
@@ -68,7 +65,6 @@ class PlatAdminController extends AbstractController
     }
 
     #[Route('/admin/plat/supresion/{id}', name: 'admin_plat_delete')]
-    #[IsGranted('ROLE_ADMIN')]
     public function deletePlat(Plat $plat, EntityManagerInterface $manager): Response
     {
         $manager->remove($plat);

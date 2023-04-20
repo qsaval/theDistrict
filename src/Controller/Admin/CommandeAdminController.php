@@ -14,7 +14,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CommandeAdminController extends AbstractController
 {
     #[Route('/admin/commande', name: 'admin_commande')]
-    #[IsGranted('ROLE_ADMIN')]
     public function commande(CommandeRepository $ripo): Response
     {
         $commande = $ripo->findAll();
@@ -24,7 +23,6 @@ class CommandeAdminController extends AbstractController
     }
 
     #[Route('/admin/commande/edition/{id}', name: 'admin_commande_edit')]
-    #[IsGranted('ROLE_ADMIN')]
     public function editCommande(Commande $commande, Request $request, EntityManagerInterface $manager): Response
     {
         $form = $this->createForm(CommandeType::class, $commande);
@@ -45,7 +43,6 @@ class CommandeAdminController extends AbstractController
     }
 
     #[Route('/admin/commande/supresion/{id}', name: 'admin_commande_delete')]
-    #[IsGranted('ROLE_ADMIN')]
     public function deleteCommande(Commande $commande, EntityManagerInterface $manager): Response
     {
         $manager->remove($commande);

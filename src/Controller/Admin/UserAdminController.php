@@ -12,7 +12,6 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserAdminController extends AbstractController
 {
     #[Route('/admin/utilisateur', name: 'admin_user')]
-    #[IsGranted('ROLE_ADMIN')]
     public function user(UserRepository $ripo): Response
     {
         $user = $ripo->findAll();
@@ -22,7 +21,6 @@ class UserAdminController extends AbstractController
     }
 
     #[Route('/admin/utilisateur/supresion/{id}', name: 'admin_user_delete')]
-    #[IsGranted('ROLE_ADMIN')]
     public function deleteUser(User $user, EntityManagerInterface $manager): Response
     {
         $manager->remove($user);

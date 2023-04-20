@@ -2,7 +2,6 @@
 
 namespace App\Controller;
 
-use App\Entity\Plat;
 use App\Entity\Detail;
 use App\Entity\Commande;
 use App\Service\CartService;
@@ -54,12 +53,11 @@ class CartController extends AbstractController
 
         $em->flush();
 
-        $user = $this->getUser();
         $mailService->sendValide(
             'serviceClient@thedistrict.com',
             'Commande validée',
             'emails/valide.html.twig',
-            $user->getEmail()
+            $this->getUser()->getEmail()
         );
 
         $carteService->removeCartAll();
