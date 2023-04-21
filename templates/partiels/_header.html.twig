@@ -12,34 +12,40 @@
 					</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('categorie') }}">Catégotrie</a>
+					<a class="nav-link active" href="{{ path('categorie') }}">Catégotrie</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('plat') }}">Plats</a>
+					<a class="nav-link active" href="{{ path('plat') }}">Plats</a>
 				</li>
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('contact') }}">Contact</a>
+					<a class="nav-link active" href="{{ path('contact') }}">Contact</a>
 				</li>
 			</ul>
 			<ul class="navbar-nav me-auto col-lg-3">
 				<li class="nav-item">
-					<a class="nav-link" href="{{ path('cart') }}">Panier</a>
+					<a class="nav-link active" href="{{ path('cart') }}">Panier</a>
 				</li>
 				{% if app.user %}
-					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_logout') }}">Deconnexion</a>
+					<li class="nav-item dropdown" style="margin-right: 5rem;">
+						<a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.prenom }} {{ app.user.nom}}</a>
+						<div class="dropdown-menu">
+							<a class="dropdown-item" href="{{ path('user_edit',{'id': app.user.id}) }}">Modifier mes information</a>
+                  			<a class="dropdown-item" href="{{ path('user_edit_password',{'id': app.user.id}) }}">Modifier mon mot de passe</a>
+							<a class="dropdown-item" href="{{ path('app_commande', {'id': app.user.id}) }}">Mes commande</a>
+							{% if 'ROLE_ADMIN' in app.user.roles %}
+								<div class="dropdown-divider"></div>
+								<a class="dropdown-item" href="{{ path('app_admin') }}">Administration</a>
+							{% endif %}
+							<div class="dropdown-divider"></div>
+							<a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
+						</div>
 					</li>
-					{% if 'ROLE_ADMIN' in app.user.roles %}
-						<li class="nav-item">
-							<a class="nav-link" href="{{ path('app_admin') }}">Administration</a>
-						</li>
-					{% endif %}
 				{% else %}
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_login') }}">Connexion</a>
+						<a class="nav-link active" href="{{ path('app_login') }}">Connexion</a>
 					</li>
 					<li class="nav-item">
-						<a class="nav-link" href="{{ path('app_register') }}">Inscription</a>
+						<a class="nav-link active" href="{{ path('app_register') }}">Inscription</a>
 					</li>
 				{% endif %}
 			</ul>

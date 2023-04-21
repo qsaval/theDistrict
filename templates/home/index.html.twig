@@ -28,8 +28,9 @@ Acceuil
                 <div class="card-body">
                     <h4 class="card-title">{{ categorie.libelle }}</h4>
                     <div class="d-flex justify-content-center mt-2">
-                        <img src="{{ asset('media/') }}{{ categorie.image }}" alt="{{ categorie.libelle }}" heigh="330px" width="280px">
-                    </div>                    <br>
+                        <img src="{{ asset('media/') }}{{ categorie.image }}" alt="{{ categorie.libelle }}" heigh="330px" width="280px" class="img-fluid img-thumbnail">
+                    </div>                    
+                    <br>
                     <a href="{{ path('categorie_show', {'id': categorie.id}) }}" class="btn btn-primary mt-2">liste des
                         Plats</a>
                 </div>
@@ -44,7 +45,7 @@ Acceuil
                 <div class="card-body">
                     <h4 class="card-title">{{ plat.libelle }}</h4>
                     <div class="d-flex justify-content-center">
-                        <img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" height="10rem" class="img-fluid img-thumbnail">
+                        <img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" heigh="330px" width="280px" class="img-fluid img-thumbnail">
                     </div>                    <br>
                     <a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
                 </div>

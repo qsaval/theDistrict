@@ -249,8 +249,8 @@ class AppFixtures extends Fixture
             $manager->persist($commande8);
 
             $user = new User();
-            $user->setNom('Administrateur')
-                  ->setPrenom('theDistrict')
+            $user->setPrenom('Administrateur')
+                  ->setNom('theDistrict')
                   ->setEmail('admin@thedistrict.com')
                   ->setTelephone('')
                   ->setPassword(password_hash('password', PASSWORD_DEFAULT))
@@ -258,8 +258,8 @@ class AppFixtures extends Fixture
             $manager->persist($user);
 
             $user1 = new User();
-            $user1->setNom('Kelly')
-                  ->setPrenom('Dillard')
+            $user1->setPrenom('Kelly')
+                  ->setNom('Dillard')
                   ->setEmail('kelly@gmail.com')
                   ->setTelephone('7896547800')
                   ->addCommande($commande1)
@@ -268,8 +268,8 @@ class AppFixtures extends Fixture
             $manager->persist($user1);
 
             $user2 = new User();
-            $user2->setNom('Thomas')
-                  ->setPrenom('Gilchrist')
+            $user2->setPrenom('Thomas')
+                  ->setNom('Gilchrist')
                   ->setEmail('thom@gmail.com')
                   ->setTelephone('7410001450')
                   ->addCommande($commande2)
@@ -278,8 +278,8 @@ class AppFixtures extends Fixture
             $manager->persist($user2);
 
             $user3 = new User();
-            $user3->setNom('Martha')
-                  ->setPrenom('Woods')
+            $user3->setPrenom('Martha')
+                  ->setNom('Woods')
                   ->setEmail('martha@gmail.com')
                   ->setTelephone('78540001200')
                   ->addCommande($commande3)
@@ -288,8 +288,8 @@ class AppFixtures extends Fixture
             $manager->persist($user3);
 
             $user4 = new User();
-            $user4->setNom('Charlie')
-                  ->setPrenom('Dupont')
+            $user4->setPrenom('Charlie')
+                  ->setNom('Dupont')
                   ->setEmail('charlie@gmail.com')
                   ->setTelephone('7458965550')
                   ->addCommande($commande4)
@@ -298,8 +298,8 @@ class AppFixtures extends Fixture
             $manager->persist($user4);
 
             $user5 = new User();
-            $user5->setNom('Claudia')
-                  ->setPrenom('Hedley')
+            $user5->setPrenom('Claudia')
+                  ->setNom('Hedley')
                   ->setEmail('hedley@gmail.com')
                   ->setTelephone('7451114400')
                   ->addCommande($commande5)
@@ -308,8 +308,8 @@ class AppFixtures extends Fixture
             $manager->persist($user5);
 
             $user6 = new User();
-            $user6->setNom('Vernon')
-                  ->setPrenom('Vargas')
+            $user6->setPrenom('Vernon')
+                  ->setNom('Vargas')
                   ->setEmail('vonno@gmail.com')
                   ->setTelephone('7414744440')
                   ->addCommande($commande6)
@@ -318,8 +318,8 @@ class AppFixtures extends Fixture
             $manager->persist($user6);
 
             $user7 = new User();
-            $user7->setNom('Carlos')
-                  ->setPrenom('Grayson')
+            $user7->setPrenom('Carlos')
+                  ->setNom('Grayson')
                   ->setEmail('carlos@gmail.com')
                   ->setTelephone('7401456980')
                   ->addCommande($commande7)
@@ -328,8 +328,8 @@ class AppFixtures extends Fixture
             $manager->persist($user7);
 
             $user8 = new User();
-            $user8->setNom('Jonathan')
-                  ->setPrenom('Caudill')
+            $user8->setPrenom('Jonathan')
+                  ->setNom('Caudill')
                   ->setEmail('jonathan@gmail.com')
                   ->setTelephone('7410256996')
                   ->addCommande($commande8)
