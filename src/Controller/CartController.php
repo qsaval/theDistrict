@@ -38,7 +38,7 @@ class CartController extends AbstractController
             
             $detail = new Detail();
             $detail->setPlat($plat)
-            ->setQuantite($quantite);
+                ->setQuantite($quantite);
             $em->persist($detail);
             
             $commande->addDetail($detail);
