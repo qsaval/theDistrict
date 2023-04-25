@@ -16,48 +16,24 @@ class HomeController extends AbstractController
     #[Route('/', name: 'home')]
     public function index(CategorieRepository $Cripo, PlatRepository $Pripo, Request $request): Response
     {
-        $i = 1;
-        $categories = array();
-        while(count($categories) != 6)
-        {
-            $categorie = $Cripo->find($i);
-            if($categorie->isActive()){
-                $categories [] = $categorie;
-            }
-            
-            $i++;
-        }
+        $categories = $Cripo->findMany(6);
 
-        $j = 1;
-        $plats = array();
-        while(count($plats) != 3)
-        {
-            $plat = $Pripo->find($j);
-            if($plat->isActive()){
-                $plats [] = $plat;
-            }
-            
-            $j++;
-        }
+        $plats = $Pripo->findMany(3);
 
         $form = $this->createForm(RechercheType::class);
         
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $recherche = $form->getData();
-            
-            $categorie2 = $Cripo->findAll();
-            for ($k=0; $k < count($categorie2); $k++){ 
-                if(strtoupper($categorie2[$k]->getLibelle()) == strtoupper($recherche['recherche'])){  
-                    return $this->redirectToRoute('categorie_show', ['id' => $categorie2[$k]->getId()]);
-                }
+ 
+            if($Cripo->findBy(['libelle' => $recherche])){ 
+                $categorie2 = $Cripo->findOneBy(['libelle' => $recherche]);
+                return $this->redirectToRoute('categorie_show', ['id' => $categorie2->getId()]);
             }
-            
-            $plat2 = $Pripo->findAll();
-            for ($z=0; $z < count($plat2); $z++){ 
-                if(strtoupper($plat2[$z]->getLibelle()) == strtoupper($recherche['recherche'])){
-                    return $this->redirectToRoute('plat_show', ['id' => $plat2[$z]->getId()]);
-                }
+
+            if($Pripo->findBy(['libelle' => $recherche])){ 
+                $plat2 = $Pripo->findOneBy(['libelle' => $recherche]);
+                return $this->redirectToRoute('plat_show', ['id' => $plat2->getId()]);
             }
         };
 

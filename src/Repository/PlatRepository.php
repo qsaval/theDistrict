@@ -39,6 +39,16 @@ class PlatRepository extends ServiceEntityRepository
         }
     }
 
+    public function findMany($value): array
+   {
+       return $this->createQueryBuilder('p')
+           ->andWhere('p.active = true')
+           ->setMaxResults($value)
+           ->getQuery()
+           ->getResult()
+       ;
+   }
+
 //    /**
 //     * @return Plat[] Returns an array of Plat objects
 //     */
