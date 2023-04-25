@@ -27,13 +27,13 @@ class HomeController extends AbstractController
             $recherche = $form->getData();
  
             if($Cripo->findOneBy(['libelle' => $recherche])){ 
-                $categorie2 = $Cripo->findOneBy(['libelle' => $recherche]);
-                return $this->redirectToRoute('categorie_show', ['id' => $categorie2->getId()]);
+                $categorie = $Cripo->findOneBy(['libelle' => $recherche]);
+                return $this->redirectToRoute('categorie_show', ['id' => $categorie->getId()]);
             }
 
             if($Pripo->findOneBy(['libelle' => $recherche])){ 
-                $plat2 = $Pripo->findOneBy(['libelle' => $recherche]);
-                return $this->redirectToRoute('plat_show', ['id' => $plat2->getId()]);
+                $plat = $Pripo->findOneBy(['libelle' => $recherche]);
+                return $this->redirectToRoute('plat_show', ['id' => $plat->getId()]);
             }
         };
 
