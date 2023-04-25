@@ -48,14 +48,14 @@ class HomeController extends AbstractController
             
             $categorie2 = $Cripo->findAll();
             for ($k=0; $k < count($categorie2); $k++){ 
-                if(strtoupper($categorie2[$i]->getLibelle()) == strtoupper($recherche['recherche'])){  
+                if(strtoupper($categorie2[$k]->getLibelle()) == strtoupper($recherche['recherche'])){  
                     return $this->redirectToRoute('categorie_show', ['id' => $categorie2[$k]->getId()]);
                 }
             }
             
             $plat2 = $Pripo->findAll();
             for ($z=0; $z < count($plat2); $z++){ 
-                if(strtoupper($plat2[$j]->getLibelle()) == strtoupper($recherche['recherche'])){
+                if(strtoupper($plat2[$z]->getLibelle()) == strtoupper($recherche['recherche'])){
                     return $this->redirectToRoute('plat_show', ['id' => $plat2[$z]->getId()]);
                 }
             }
