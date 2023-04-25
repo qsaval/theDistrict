@@ -17,15 +17,15 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CartController extends AbstractController
 {
     #[Route('/mon-panier', name: 'cart')]
-    public function index(CartService $carteService): Response
+    public function index(CartService $cartService): Response
     {
         return $this->render('cart/index.html.twig', [
-            'cart' => $carteService->getTotal()
+            'cart' => $cartService->getTotal()
         ]);
     }
 
     #[Route('/mon-panier/valide', name: 'cart_valide')]
-    public function valide(CartService $carteService, Request $request, PlatRepository $repo, EntityManagerInterface $em, MailService $mailService): Response
+    public function valide(CartService $cartService, Request $request, PlatRepository $repo, EntityManagerInterface $em, MailService $mailService): Response
     {
         $session = $request->getSession();
         $panier = $session->get('cart', []);
@@ -60,22 +60,22 @@ class CartController extends AbstractController
             $this->getUser()->getEmail()
         );
 
-        $carteService->removeCartAll();
+        $cartService->removeCartAll();
 
         return $this->redirectToRoute('home');
     }
 
     #[Route('/mon-panier/add/{id<\d+>}', name: 'cart_add')]
-    public function addToRoute(CartService $carteService, int $id): Response
+    public function addToRoute(CartService $cartService, int $id): Response
     {
-        $carteService->addToCart($id);
+        $cartService->addToCart($id);
         return $this->redirectToRoute('cart');
     }
 
     #[Route('/mon-panier/remove/{id<\d+>}', name: 'cart_remove')]
-    public function removeToCart(CartService $carteService, int $id): Response
+    public function removeToCart(CartService $cartService, int $id): Response
     {
-        $carteService->removeToCart($id);
+        $cartService->removeToCart($id);
         return $this->redirectToRoute('cart');
     }
 
