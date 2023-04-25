@@ -17,7 +17,7 @@ class HomeController extends AbstractController
     public function index(CategorieRepository $Cripo, PlatRepository $Pripo, Request $request): Response
     {
         $categories = $Cripo->findMany(6);
-
+        
         $plats = $Pripo->findMany(3);
 
         $form = $this->createForm(RechercheType::class);
@@ -26,12 +26,12 @@ class HomeController extends AbstractController
         if($form->isSubmitted() && $form->isValid()){
             $recherche = $form->getData();
  
-            if($Cripo->findBy(['libelle' => $recherche])){ 
+            if($Cripo->findOneBy(['libelle' => $recherche])){ 
                 $categorie2 = $Cripo->findOneBy(['libelle' => $recherche]);
                 return $this->redirectToRoute('categorie_show', ['id' => $categorie2->getId()]);
             }
 
-            if($Pripo->findBy(['libelle' => $recherche])){ 
+            if($Pripo->findOneBy(['libelle' => $recherche])){ 
                 $plat2 = $Pripo->findOneBy(['libelle' => $recherche]);
                 return $this->redirectToRoute('plat_show', ['id' => $plat2->getId()]);
             }
