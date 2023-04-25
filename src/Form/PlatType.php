@@ -6,8 +6,11 @@ use App\Entity\Plat;
 use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
+use Symfony\Component\Validator\Constraints\All;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
+use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
+use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -21,7 +24,20 @@ class PlatType extends AbstractType
             ->add('libelle',TextType::class)
             ->add('description',TextareaType::class)
             ->add('prix',MoneyType::class)
-            ->add('image',TextType::class)
+            ->add('image', FileType::class, [
+                'label' => false,
+                'multiple' => true,
+                'mapped' => false,
+                'required' => false,
+                'constraints' => [
+                    new All(
+                        new Image([
+                            'maxWidth' => 1280,
+                            'maxWidthMessage' => 'L\'image doit faire {{ max_width }} pixels de large au maximum'
+                        ])
+                    )
+                ]
+            ])
             ->add('active',CheckboxType::class)
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
