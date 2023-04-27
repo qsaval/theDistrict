@@ -14,17 +14,12 @@
 		{% for plat in categories.plats %}
 			{% if plat.active == true %}
 				<div class="col-lg-4 mt-3">
-					<div class="card border-dark Carte">
+					<div class="card carte" style="width: 18rem; height: 28rem;">
+						<img src="{{ asset('media/') }}{{ plat.image }}" class="card-img-top" alt="{{ plat.libelle }}">
 						<div class="card-body">
 							<h4 class="card-title">{{ plat.libelle }}</h4>
-							<div class="d-flex justify-content-center mt-2">
-								<img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" heigh="450px" width="350px" class="img-fluid img-thumbnail">
-							</div>
 							<br>
-							<div class="d-flex justify-content-between">
-								<a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
-								<a href="{{ path('cart_add', {'id': plat.id}) }}" class="btn btn-primary">panier</a>
-							</div>
+							<a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
 						</div>
 					</div>
 				</div>
