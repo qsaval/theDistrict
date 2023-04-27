@@ -60,9 +60,7 @@ class CartController extends AbstractController
             $this->getUser()->getEmail()
         );
 
-        $cartService->removeCartAll();
-
-        return $this->redirectToRoute('home');
+        return $this->redirectToRoute('app_stripe', ['commande' => $commande->getId()]);
     }
 
     #[Route('/mon-panier/add/{id<\d+>}', name: 'cart_add')]

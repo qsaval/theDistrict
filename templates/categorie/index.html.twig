@@ -15,14 +15,13 @@
 			{% for categorie in categories %}
 				{% if categorie.active == 'Yes' %}
 					<div class="col-lg-4 my-2">
-						<div class="card border-dark Carte">
+						<div class="card m-2" style="width: 18rem; height: 31rem;">
+							<img src="{{ asset('media/') }}{{ categorie.image }}" class="card-img-top " alt="{{ categorie.libelle }}">
 							<div class="card-body">
-								<h4 class="card-title">{{ categorie.libelle }}</h4>
-								<div class="d-flex justify-content-center mt-2">
-									<img src="{{ asset('media/') }}{{ categorie.image }}" alt="{{ categorie.libelle }}" heigh="400px" width="300px" class="img-fluid img-thumbnail">
-								</div>
+								<h4 class="card-title">{{ categorie.libelle }}</h4>                   
 								<br>
-								<a href="{{ path('categorie_show', {'id': categorie.id}) }}" class="btn btn-primary mt-2">liste des Plats</a>
+								<a href="{{ path('categorie_show', {'id': categorie.id}) }}" class="btn btn-primary mt-2">liste des
+									Plats</a>
 							</div>
 						</div>
 					</div>

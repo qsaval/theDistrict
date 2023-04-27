@@ -75,7 +75,7 @@ class Commande
     /**
      * @return Collection<int, Detail>
      */
-    public function getDetail(): Collection
+    public function getDetails(): Collection
     {
         return $this->detail;
     }

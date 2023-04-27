@@ -11,7 +11,8 @@ Acceuil
     </div>
     {{ form_start(form) }}
     <div class="row">
-        <div class="col-8 col-md-10">{{ form_widget(form.recherche, {'attr': {'placeholder': 'Recherche', 'class': 'mt-4'}}) }}</div>
+        <div class="col-8 col-md-10">{{ form_widget(form.recherche, {'attr': {'placeholder': 'Recherche', 'class':
+            'mt-4'}}) }}</div>
         <div class="col-2"> {{ form_widget(form.submit) }}</div>
     </div>
     {{ form_end(form) }}
@@ -24,12 +25,11 @@ Acceuil
     <div class="row">
         {% for categorie in categories %}
         <div class="col-lg-4 my-2">
-            <div class="card border-dark Carte">
+            <div class="card m-2" style="width: 18rem; height: 31rem;">
+                <img src="{{ asset('media/') }}{{ categorie.image }}" class="card-img-top "
+                    alt="{{ categorie.libelle }}">
                 <div class="card-body">
                     <h4 class="card-title">{{ categorie.libelle }}</h4>
-                    <div class="d-flex justify-content-center mt-2">
-                        <img src="{{ asset('media/') }}{{ categorie.image }}" alt="{{ categorie.libelle }}" heigh="330px" width="280px" class="img-fluid img-thumbnail">
-                    </div>                    
                     <br>
                     <a href="{{ path('categorie_show', {'id': categorie.id}) }}" class="btn btn-primary mt-2">liste des
                         Plats</a>
@@ -41,12 +41,11 @@ Acceuil
     <div class="row">
         {% for plat in plats %}
         <div class="col-lg-4 mt-3">
-            <div class="card border-dark Carte" >
+            <div class="card" style="width: 18rem; height: 28rem;">
+                <img src="{{ asset('media/') }}{{ plat.image }}" class="card-img-top" alt="{{ plat.libelle }}">
                 <div class="card-body">
                     <h4 class="card-title">{{ plat.libelle }}</h4>
-                    <div class="d-flex justify-content-center">
-                        <img src="{{ asset('media/') }}{{ plat.image }}" alt="{{ plat.libelle }}" heigh="330px" width="280px" class="img-fluid img-thumbnail">
-                    </div>                    <br>
+                    <br>
                     <a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
                 </div>
             </div>
