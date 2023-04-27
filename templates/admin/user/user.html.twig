@@ -6,7 +6,7 @@
 
 {% block body %}
 	<div class="container-fluid row mt-4">
-		<div class="col-md-2 mb-5">
+		<div class="col-lg-2 mb-5">
 			<div class="card border-dark mb-3" style="max-width: 20rem;">
 				<div class="card-body">
 					<h4>
@@ -21,15 +21,15 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-10">
+		<div class="col-lg-10">
 			<h1>liste des utilisateur</h1>
 			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th scope="col">Numéro</th>
+						<th scope="col">Id</th>
 						<th scope="col">Nom</th>
-						<th scope="col">Email</th>
-						<th scope="col">Role</th>
+						<th class="visually-hidden" scope="col">Email</th>
+						<th class="visually-hidden" scope="col">Role</th>
 						<th scope="col">suppresion</th>
 					</tr>
 				</thead>
@@ -38,8 +38,8 @@
 						<tr class="table-primary">
 							<th scope="row">{{ user.id }}</th>
 							<td>{{ user.nom}}</td>
-							<td>{{ user.email }}</td>
-							<td>{{ user.roles[0]}}</td>
+							<td class="visually-hidden">{{ user.email }}</td>
+							<td class="visually-hidden">{{ user.roles[0]}}</td>
 							<td>
 								<a href="{{ path('admin_user_delete', {'id': user.id}) }}" class="btn btn-warning">Supprimer</a>
 							</td>

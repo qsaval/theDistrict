@@ -6,7 +6,7 @@
 
 {% block body %}
 	<div class="container-fluid row mt-4">
-		<div class="col-md-2 mb-5">
+		<div class="col-lg-2 mb-5">
 			<div class="card border-dark mb-3" style="max-width: 20rem;">
 				<div class="card-body">
 					<h4>
@@ -21,33 +21,33 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-10">
+		<div class="col-lg-10">
 			<div class="row">
 				<h1 class="col-md-10">liste des plats</h1>
 				<a href="{{ path('admin_plat_new') }}" class="btn btn-primary col-md-2">nouveau plat</a>
 			</div>
 			<table class="table table-hover">
 				<thead>
-					<tr>
-						<th scope="col">Numéro</th>
-						<th scope="col">Nom</th>
-						<th scope="col">description</th>
-						<th scope="col">prix</th>
-						<th scope="col">Edition</th>
-						<th scope="col">suppresion</th>
+					<tr class="row">
+						<th class="d-none d-lg-table-cell d-print-teble-cell col-1" scope="col">Id</th>
+						<th class="col-4 col-lg-2" scope="col">Nom</th>
+						<th class="d-none d-lg-table-cell d-print-teble-cell col-4" scope="col">Description</th>
+						<th class="d-none d-lg-table-cell d-print-teble-cell col-1" scope="col">Prix</th>
+						<th class="col-4 col-lg-2" scope="col">Edition</th>
+						<th class="col-4 col-lg-2" scope="col">Suppresion</th>
 					</tr>
 				</thead>
 				<tbody>
 					{% for plat in plats %}
-						<tr class="table-primary">
-							<th scope="row">{{ plat.id }}</th>
-							<td>{{ plat.libelle }}</td>
-							<td>{{ plat.description }}</td>
-							<td>{{ plat.prix }}€</td>
-							<td>
+						<tr class="table-primary row">
+							<th class="d-none d-lg-table-cell d-print-teble-cell col-1" scope="row">{{ plat.id }}</th>
+							<td class="col-4 col-lg-2">{{ plat.libelle }}</td>
+							<td class="d-none d-lg-table-cell d-print-teble-cell col-4">{{ plat.description }}</td>
+							<td class="d-none d-lg-table-cell d-print-teble-cell col-1">{{ plat.prix }}€</td>
+							<td class="col-4 col-lg-2">
 								<a href="{{ path('admin_plat_edit', {'id': plat.id}) }}" class="btn btn-info">Modifier</a>
 							</td>
-							<td>
+							<td class="col-4 col-lg-2">
 								<a href="{{ path('admin_plat_delete', {'id': plat.id}) }}" class="btn btn-warning">Supprimer</a>
 							</td>
 						</tr>

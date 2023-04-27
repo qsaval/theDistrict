@@ -6,9 +6,9 @@
 
 {% block body %}
 	<div class="container-fluid row mt-4">
-		<div class="col-md-2 mb-5">
+		<div class="col-lg-2 mb-md-5">
 			<div class="card border-dark mb-3" style="max-width: 20rem;">
-				<div class="card-body">
+				<div class="card-body ">
 					<h4>
 						liste de admin
 					</h2>
@@ -21,17 +21,17 @@
 				</div>
 			</div>
 		</div>
-		<div class="col-md-10">
+		<div class="col-lg-10">
 			<div class="row">
 			<h1 class="col-md-10 ">liste des categories</h1>
 			<a href="{{ path('admin_categorie_new') }}" class="btn btn-primary col-md-2">nouvelle categorie</a>
 			</div>
-			<table class="table table-hover col-10">
+			<table class="table table-hover">
 				<thead>
 					<tr>
-						<th scope="col">Numéro</th>
+						<th class="d-none d-lg-table-cell d-print-teble-cell" scope="col">Id</th>
 						<th scope="col">Nom</th>
-						<th scope="col">image</th>
+						<th class="d-none d-lg-table-cell d-print-teble-cell" scope="col">image</th>
 						<th scope="col">Edition</th>
 						<th scope="col">suppresion</th>
 					</tr>
@@ -39,9 +39,9 @@
 				<tbody>
 					{% for categorie in categories %}
 						<tr class="table-primary">
-							<th scope="row">{{ categorie.id }}</th>
+							<th class="d-none d-lg-table-cell d-print-teble-cell" scope="row">{{ categorie.id }}</th>
 							<td>{{ categorie.libelle }}</td>
-							<td>{{ categorie.image }}</td>
+							<td class="d-none d-lg-table-cell d-print-teble-cell">{{ categorie.image }}</td>
 							<td>
 								<a href="{{ path('admin_categorie_edit', {'id': categorie.id}) }}" class="btn btn-info">Modifier</a>
 							</td>
