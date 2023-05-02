@@ -22,7 +22,7 @@ class CommandeController extends AbstractController
     }
 
     #[Security("is_granted('ROLE_USER') and user === choosenUser")]
-    #[Route('/commande/{user}/{commande}', name: 'commande_annulee')]
+    #[Route('/commande/{choosenUser}/{commande}', name: 'commande_annulee')]
     public function annulee(User $choosenUser, Commande $commande, EntityManagerInterface $em): Response
     {
         $commande->setEtat(4);
