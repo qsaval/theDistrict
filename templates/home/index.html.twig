@@ -31,7 +31,7 @@ Acceuil
                 <div class="card-body">
                     <h4 class="card-title">{{ categorie.libelle }}</h4>
                     <br>
-                    <a href="{{ path('categorie_show', {'id': categorie.id}) }}" class="btn btn-primary mt-2">liste des
+                    <a href="{{ path('categorie_listPlat', {'id': categorie.id}) }}" class="btn btn-primary mt-2">liste des
                         Plats</a>
                 </div>
             </div>
@@ -46,7 +46,7 @@ Acceuil
                 <div class="card-body">
                     <h4 class="card-title">{{ plat.libelle }}</h4>
                     <br>
-                    <a href="{{ path('plat_show', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
+                    <a href="{{ path('plat_detail', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
                 </div>
             </div>
         </div>
