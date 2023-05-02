@@ -28,8 +28,8 @@
 					<tr>
 						<th scope="col">Id</th>
 						<th scope="col">Nom</th>
-						<th class="visually-hidden" scope="col">Email</th>
-						<th class="visually-hidden" scope="col">Role</th>
+						<th class="d-none d-lg-table-cell d-print-teble-cell" scope="col">Email</th>
+						<th class="d-none d-lg-table-cell d-print-teble-cell" scope="col">Role</th>
 						<th scope="col">suppresion</th>
 					</tr>
 				</thead>
@@ -37,9 +37,9 @@
 					{% for user in users %}
 						<tr class="table-primary">
 							<th scope="row">{{ user.id }}</th>
-							<td>{{ user.nom}}</td>
-							<td class="visually-hidden">{{ user.email }}</td>
-							<td class="visually-hidden">{{ user.roles[0]}}</td>
+							<td>{{ user.prenom}} {{ user.nom}}</td>
+							<td class="d-none d-lg-table-cell d-print-teble-cell">{{ user.email }}</td>
+							<td class="d-none d-lg-table-cell d-print-teble-cell">{{ user.roles[0]}}</td>
 							<td>
 								<a href="{{ path('admin_user_delete', {'id': user.id}) }}" class="btn btn-warning">Supprimer</a>
 							</td>

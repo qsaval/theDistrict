@@ -27,13 +27,13 @@ class StripeController extends AbstractController
         Stripe\Stripe::setApiKey('sk_test_51N0js9CjO1FIa7oUhKvQznKvDRO7PBtCu8QVAiXXVR6rXjnd14yFskpIhk0v1qQmmMqe7hXQHxViHLT8SMQNGRtx00hYsctv1E');
         Stripe\Charge::create ([
                 "amount" => 5 * 100,
-                "currency" => "euro",
+                "currency" => "eur",
                 "source" => $request->request->get('stripeToken')
         ]);
         $this->addFlash(
             'success',
             'Payment Successful!'
         );
-        return $this->redirectToRoute('app_stripe', [], Response::HTTP_SEE_OTHER);
+        return $this->redirectToRoute('home', [], Response::HTTP_SEE_OTHER);
     }
 }

@@ -51,7 +51,6 @@ class CategorieAdminController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $categorie = $form->getData();
-            $categorie->setUser($this->getUser());
 
             $manager->persist($categorie);
             $manager->flush();

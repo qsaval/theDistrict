@@ -51,7 +51,6 @@ class PlatAdminController extends AbstractController
         $form->handleRequest($request);
         if($form->isSubmitted() && $form->isValid()){
             $plat = $form->getData();
-            $plat->setUser($this->getUser());
 
             $manager->persist($plat);
             $manager->flush();
