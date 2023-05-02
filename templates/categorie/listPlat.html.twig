@@ -13,7 +13,7 @@
 	<div class="row">
 		{% for plat in categories.plats %}
 			{% if plat.active == true %}
-				<div class="col-lg-4 mt-3">
+				<div class="col-lg-4 mt-3 d-flex justify-content-center">
 					<div class="card carte" style="width: 18rem;">
 						<img src="{{ asset('media/') }}{{ plat.image }}" class="card-img-top" alt="{{ plat.libelle }}">
 						<div class="card-body">
