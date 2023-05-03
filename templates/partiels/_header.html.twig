@@ -33,10 +33,10 @@
                   			<a class="dropdown-item link-light lien" href="{{ path('user_edit_password',{'id': app.user.id}) }}">Modifier mon mot de passe</a>
 							<a class="dropdown-item link-light lien" href="{{ path('app_commande', {'id': app.user.id}) }}">Mes commande</a>
 							{% if 'ROLE_ADMIN' in app.user.roles %}
-								<div class="dropdown-divider"></div>
+								<div class="dropdown-divider bg-white"></div>
 								<a class="dropdown-item link-light lien" href="{{ path('app_admin') }}">Administration</a>
 							{% endif %}
-							<div class="dropdown-divider"></div>
+							<div class="dropdown-divider bg-white"></div>
 							<a class="dropdown-item link-light lien" href="{{ path('app_logout') }}">Déconnexion</a>
 						</div>
 					</li>

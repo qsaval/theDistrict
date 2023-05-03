@@ -6,6 +6,7 @@ use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,9 +15,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CommandeAdminController extends AbstractController
 {
     #[Route('/admin/commande', name: 'admin_commande')]
-    public function commande(CommandeRepository $ripo): Response
+    public function commande(CommandeRepository $ripo, Request $request, PaginatorInterface $paginator): Response
     {
-        $commande = $ripo->findAll();
+        $commande = $paginator->paginate(
+            $ripo->findAll(),
+            $request->query->getInt('page', 1),
+            5
+        );
+
         return $this->render('admin/commande/commande.html.twig', [
             'commandes' => $commande,
         ]);

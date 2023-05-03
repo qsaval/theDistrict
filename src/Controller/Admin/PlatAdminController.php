@@ -6,6 +6,7 @@ use App\Entity\Plat;
 use App\Form\PlatType;
 use App\Repository\PlatRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,9 +15,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class PlatAdminController extends AbstractController
 {
     #[Route('/admin/plat', name: 'admin_plat')]
-    public function plat(PlatRepository $ripo): Response
+    public function plat(PlatRepository $ripo, Request $request, PaginatorInterface $paginator): Response
     {
-        $plat = $ripo->findAll();
+        $plat = $paginator->paginate(
+            $ripo->findAll(),
+            $request->query->getInt('page', 1),
+            5
+        );
+
         return $this->render('admin/plat/plat.html.twig', [
             'plats' => $plat,
         ]);

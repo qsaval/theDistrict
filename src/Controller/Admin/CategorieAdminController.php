@@ -6,6 +6,7 @@ use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,9 +15,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class CategorieAdminController extends AbstractController
 {
     #[Route('/admin/categorie', name: 'admin_categorie')]
-    public function categorie(CategorieRepository $ripo): Response
+    public function categorie(CategorieRepository $ripo, Request $request, PaginatorInterface $paginator): Response
     {
-        $categorie = $ripo->findAll();
+        $categorie = $paginator->paginate(
+            $ripo->findAll(),
+            $request->query->getInt('page', 1),
+            5
+        );
+
         return $this->render('admin/categorie/categorie.html.twig', [
             'categories' => $categorie,
         ]);

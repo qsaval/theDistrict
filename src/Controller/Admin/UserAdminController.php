@@ -5,6 +5,8 @@ namespace App\Controller\Admin;
 use App\Entity\User;
 use App\Repository\UserRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
@@ -12,9 +14,14 @@ use Symfony\Bundle\FrameworkBundle\Controller\AbstractController;
 class UserAdminController extends AbstractController
 {
     #[Route('/admin/utilisateur', name: 'admin_user')]
-    public function user(UserRepository $ripo): Response
+    public function user(UserRepository $ripo, Request $request, PaginatorInterface $paginator): Response
     {
-        $user = $ripo->findAll();
+        $user = $paginator->paginate(
+            $ripo->findAll(),
+            $request->query->getInt('page', 1),
+            5
+        );
+
         return $this->render('admin/user/user.html.twig', [
             'users' => $user,
         ]);
