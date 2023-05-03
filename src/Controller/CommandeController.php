@@ -4,6 +4,7 @@ namespace App\Controller;
 
 use App\Entity\User;
 use App\Entity\Commande;
+use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
@@ -14,10 +15,13 @@ class CommandeController extends AbstractController
 {
     #[Security("is_granted('ROLE_USER') and user === choosenUser")]
     #[Route('/commande/{id}', name: 'app_commande')]
-    public function index(User $choosenUser): Response
+    public function index(User $choosenUser , CommandeRepository $commandeRepository): Response
     {
+        $commande = $commandeRepository->findAllDesc($choosenUser->getId());
+
         return $this->render('commande/index.html.twig', [
             'utilisateur' => $choosenUser,
+            'commandes' => $commande
         ]);
     }
 

@@ -50,6 +50,15 @@ class UserController extends AbstractController
                     $form->getData()->getNewPassword()
                 );
 
+                $choosenUser->setPassword(
+                    $hasher->hashPassword(
+                        $choosenUser,
+                        $choosenUser->getPlainPassword()
+                    )
+                );
+
+                $choosenUser->setPlainPassword(null);
+
                 $manager->persist($choosenUser);
                 $manager->flush();
 

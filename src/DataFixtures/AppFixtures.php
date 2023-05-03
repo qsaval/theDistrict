@@ -254,7 +254,10 @@ class AppFixtures extends Fixture
                   ->setEmail('admin@thedistrict.com')
                   ->setTelephone('')
                   ->setPassword(password_hash('password', PASSWORD_DEFAULT))
-                  ->setRoles(['ROLE_ADMIN','ROLE_USER']);
+                  ->setRoles(['ROLE_ADMIN','ROLE_USER'])
+                  ->setAdresse('non donnee')
+                  ->setCp('non donnee')
+                  ->setVille('non donnee');
             $manager->persist($user);
 
             $user1 = new User();
@@ -264,7 +267,10 @@ class AppFixtures extends Fixture
                   ->setTelephone('7896547800')
                   ->addCommande($commande1)
                   ->setPassword(password_hash('password', PASSWORD_DEFAULT))
-                  ->setRoles(['ROLE_USER']);
+                  ->setRoles(['ROLE_USER'])
+                  ->setAdresse('308 Post Avenue')
+                  ->setCp('69000')
+                  ->setVille('Lugdunum');
             $manager->persist($user1);
 
             $user2 = new User();
@@ -274,7 +280,10 @@ class AppFixtures extends Fixture
                   ->setTelephone('7410001450')
                   ->addCommande($commande2)
                   ->setPassword(password_hash('password', PASSWORD_DEFAULT))
-                  ->setRoles(['ROLE_USER']);
+                  ->setRoles(['ROLE_USER'])
+                  ->setAdresse('1277 Sunburst Drive')
+                  ->setCp('69000')
+                  ->setVille('Lugdunum');
             $manager->persist($user2);
 
             $user3 = new User();
@@ -284,7 +293,10 @@ class AppFixtures extends Fixture
                   ->setTelephone('78540001200')
                   ->addCommande($commande3)
                   ->setPassword(password_hash('password', PASSWORD_DEFAULT))
-                  ->setRoles(['ROLE_USER']);
+                  ->setRoles(['ROLE_USER'])
+                  ->setAdresse('478 Avenue Street')
+                  ->setCp('13000')
+                  ->setVille('Massalia');
             $manager->persist($user3);
 
             $user4 = new User();
@@ -294,7 +306,10 @@ class AppFixtures extends Fixture
                   ->setTelephone('7458965550')
                   ->addCommande($commande4)
                   ->setPassword(password_hash('password', PASSWORD_DEFAULT))
-                  ->setRoles(['ROLE_USER']);
+                  ->setRoles(['ROLE_USER'])
+                  ->setAdresse('3140 Bartlett Avenue')
+                  ->setCp('75000')
+                  ->setVille('Lutetia');
             $manager->persist($user4);
 
             $user5 = new User();
@@ -304,7 +319,10 @@ class AppFixtures extends Fixture
                   ->setTelephone('7451114400')
                   ->addCommande($commande5)
                   ->setPassword(password_hash('password', PASSWORD_DEFAULT))
-                  ->setRoles(['ROLE_USER']);
+                  ->setRoles(['ROLE_USER'])
+                  ->setAdresse('1119 Kinney Street')
+                  ->setCp('80000')
+                  ->setVille('Samarobriva');
             $manager->persist($user5);
 
             $user6 = new User();
@@ -314,7 +332,10 @@ class AppFixtures extends Fixture
                   ->setTelephone('7414744440')
                   ->addCommande($commande6)
                   ->setPassword(password_hash('password', PASSWORD_DEFAULT))
-                  ->setRoles(['ROLE_USER']);
+                  ->setRoles(['ROLE_USER'])
+                  ->setAdresse('1234 Hazelwood Avenue')
+                  ->setCp('75000')
+                  ->setVille('Lutetia');
             $manager->persist($user6);
 
             $user7 = new User();
@@ -324,7 +345,10 @@ class AppFixtures extends Fixture
                   ->setTelephone('7401456980')
                   ->addCommande($commande7)
                   ->setPassword(password_hash('password', PASSWORD_DEFAULT))
-                  ->setRoles(['ROLE_USER']);
+                  ->setRoles(['ROLE_USER'])
+                  ->setAdresse('2969 Hartland Avenue')
+                  ->setCp('13000')
+                  ->setVille('Massalia');
             $manager->persist($user7);
 
             $user8 = new User();
@@ -334,7 +358,10 @@ class AppFixtures extends Fixture
                   ->setTelephone('7410256996')
                   ->addCommande($commande8)
                   ->setPassword(password_hash('password', PASSWORD_DEFAULT))
-                  ->setRoles(['ROLE_USER']);
+                  ->setRoles(['ROLE_USER'])
+                  ->setAdresse('1959 Limer Street')
+                  ->setCp('80000')
+                  ->setVille('Samarobriva');
             $manager->persist($user8);
 
             $manager->flush();

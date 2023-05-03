@@ -19,7 +19,7 @@ class Commande
     #[ORM\Column]
     private ?\DateTimeImmutable $date_commande = null;
 
-    #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    #[ORM\Column(type: Types::DECIMAL, precision: 7, scale: 2)]
     private ?string $total = null;
 
     #[ORM\Column]

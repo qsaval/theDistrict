@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary" data-bs-theme="dark">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="{{ path('home') }}">The District</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -28,16 +28,16 @@
 				{% if app.user %}
 					<li class="nav-item dropdown" style="margin-right: 5rem;">
 						<a class="nav-link dropdown-toggle active" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">{{ app.user.prenom }} {{ app.user.nom}}</a>
-						<div class="dropdown-menu">
-							<a class="dropdown-item" href="{{ path('user_edit',{'id': app.user.id}) }}">Modifier mes information</a>
-                  			<a class="dropdown-item" href="{{ path('user_edit_password',{'id': app.user.id}) }}">Modifier mon mot de passe</a>
-							<a class="dropdown-item" href="{{ path('app_commande', {'id': app.user.id}) }}">Mes commande</a>
+						<div class="dropdown-menu bg-black">
+							<a class="dropdown-item link-light lien" href="{{ path('user_edit',{'id': app.user.id}) }}">Modifier mes information</a>
+                  			<a class="dropdown-item link-light lien" href="{{ path('user_edit_password',{'id': app.user.id}) }}">Modifier mon mot de passe</a>
+							<a class="dropdown-item link-light lien" href="{{ path('app_commande', {'id': app.user.id}) }}">Mes commande</a>
 							{% if 'ROLE_ADMIN' in app.user.roles %}
 								<div class="dropdown-divider"></div>
-								<a class="dropdown-item" href="{{ path('app_admin') }}">Administration</a>
+								<a class="dropdown-item link-light lien" href="{{ path('app_admin') }}">Administration</a>
 							{% endif %}
 							<div class="dropdown-divider"></div>
-							<a class="dropdown-item" href="{{ path('app_logout') }}">Déconnexion</a>
+							<a class="dropdown-item link-light lien" href="{{ path('app_logout') }}">Déconnexion</a>
 						</div>
 					</li>
 				{% else %}
