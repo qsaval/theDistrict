@@ -19,7 +19,9 @@ class CategorieType extends AbstractType
         $builder
             ->add('libelle',TextType::class)
             ->add('image', TextType::class)
-            ->add('active',CheckboxType::class)
+            ->add('active',CheckboxType::class, [
+                'required'   => false  
+            ])
         ;
     }
 

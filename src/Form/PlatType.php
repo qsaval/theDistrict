@@ -25,7 +25,9 @@ class PlatType extends AbstractType
             ->add('description',TextareaType::class)
             ->add('prix',MoneyType::class)
             ->add('image', TextType::class)
-            ->add('active',CheckboxType::class)
+            ->add('active',CheckboxType::class, [
+                'required'   => false  
+            ])
             ->add('categorie', EntityType::class, [
                 'class' => Categorie::class,
                 'choice_label' => 'libelle'

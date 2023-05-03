@@ -16,8 +16,8 @@
 			</div>
 			<div class="col-lg-6 col-12">
 				<div class="mx-4 text-xl">
-					<p>Prix: {{ plat.prix }}€</p>
-					<p>{{ plat.description|raw }}</p>
+					<p class="fs-3">Prix: {{ plat.prix }}€</p>
+					<p class="fs-4">{{ plat.description|raw }}</p>
 					<a href="{{ path('cart_add', {'id': plat.id}) }}" class="btn btn-primary">panier</a>
 				</div>
 			</div>
