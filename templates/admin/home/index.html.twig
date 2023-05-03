@@ -1,26 +1,19 @@
 {% extends 'base.html.twig' %}
 
 {% block title %}
-	Administration
+Administration
 {% endblock %}
 
 {% block body %}
-	<div class="container-fluid row mt-4">
-		<div class="col-md-2 mb-5">
-			<div class="card border-dark mb-3" style="max-width: 20rem;">
-				<div class="card-body">
-                    <h4> liste de admin </h2>
-					<ul>
-						<li> <a href="{{ path('admin_categorie') }}">liste des categories</a> </li>
-						<li> <a href="{{ path('admin_plat') }}">liste des plats</a> </li>
-						<li> <a href="{{ path('admin_commande') }}">liste des commandes</a> </li>
-						<li> <a href="{{ path('admin_user') }}">liste des utilisateur</a> </li>
-					</ul>
-				</div>
-            </div>
-        </div>
-		<div class="col-md-10">
-					<h1>bienvenue sur l'espace d'administration</h1>
-		</div>
+<div class="container-fluid row mt-4">
+	<h1>bienvenue sur l'espace d'administration</h1>
+	<div class="my-5 d-flex justify-content-center row">
+		<ul class="list-group col-5">
+			<li class="list-group-item"> <a href="{{ path('admin_categorie') }}" class="text-decoration-none d-flex justify-content-center">liste des categories</a> </li>
+			<li class="list-group-item"> <a href="{{ path('admin_plat') }}" class="text-decoration-none d-flex justify-content-center">liste des plats</a> </li>
+			<li class="list-group-item"> <a href="{{ path('admin_commande') }}" class="text-decoration-none d-flex justify-content-center">liste des commandes</a> </li>
+			<li class="list-group-item"> <a href="{{ path('admin_user') }}" class="text-decoration-none d-flex justify-content-center">liste des utilisateur</a> </li>
+		</ul>
 	</div>
+</div>
 {% endblock %}

@@ -6,26 +6,19 @@
 
 {% block body %}
 	<div class="container-fluid row mt-4">
-		<div class="col-lg-2 mb-md-5">
-			<div class="card border-dark mb-3" style="max-width: 20rem;">
-				<div class="card-body ">
-					<h4>
-						liste de admin
-					</h2>
-					<ul>
-						<li><a href="{{ path('admin_categorie') }}">liste des categories</a></li>
-						<li><a href="{{ path('admin_plat') }}">liste des plats</a></li>
-						<li><a href="{{ path('admin_commande') }}">liste des commandes</a></li>
-						<li><a href="{{ path('admin_user') }}">liste des utilisateur</a></li>
-					</ul>
-				</div>
-			</div>
-		</div>
-		<div class="col-lg-10">
 			<div class="row">
-			<h1 class="col-md-10 ">liste des categories</h1>
-			<a href="{{ path('admin_categorie_new') }}" class="btn btn-primary col-md-2">nouvelle categorie</a>
+				<h1 class="col-md-10 ">liste des categories</h1>
+				<a href="{{ path('admin_categorie_new') }}" class="btn btn-primary col-md-2">nouvelle categorie</a>
 			</div>
+			<div class="col-md-2 my-5">
+				<ul class="list-group">
+					<li class="list-group-item list-group-item-action list-group-item-dark"> <a href="{{ path('admin_categorie') }}" class="text-decoration-none">liste des categories</a> </li>
+					<li class="list-group-item"> <a href="{{ path('admin_plat') }}" class="text-decoration-none">liste des plats</a> </li>
+					<li class="list-group-item"> <a href="{{ path('admin_commande') }}" class="text-decoration-none">liste des commandes</a> </li>
+					<li class="list-group-item"> <a href="{{ path('admin_user') }}" class="text-decoration-none">liste des utilisateur</a> </li>
+				</ul>
+			</div>
+		<div class="col-lg-10">
 			<table class="table table-hover">
 				<thead>
 					<tr>

@@ -252,11 +252,11 @@ class AppFixtures extends Fixture
             $user->setPrenom('Administrateur')
                   ->setNom('theDistrict')
                   ->setEmail('admin@thedistrict.com')
-                  ->setTelephone('')
+                  ->setTelephone('404')
                   ->setPassword(password_hash('password', PASSWORD_DEFAULT))
                   ->setRoles(['ROLE_ADMIN','ROLE_USER'])
                   ->setAdresse('non donnee')
-                  ->setCp('non donnee')
+                  ->setCp('404')
                   ->setVille('non donnee');
             $manager->persist($user);
 
