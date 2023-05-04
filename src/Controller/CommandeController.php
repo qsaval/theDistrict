@@ -6,6 +6,8 @@ use App\Entity\User;
 use App\Entity\Commande;
 use App\Repository\CommandeRepository;
 use Doctrine\ORM\EntityManagerInterface;
+use Knp\Component\Pager\PaginatorInterface;
+use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\Annotation\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Security;
@@ -15,9 +17,13 @@ class CommandeController extends AbstractController
 {
     #[Security("is_granted('ROLE_USER') and user === choosenUser")]
     #[Route('/commande/{id}', name: 'app_commande')]
-    public function index(User $choosenUser , CommandeRepository $commandeRepository): Response
+    public function index(User $choosenUser , CommandeRepository $commandeRepository, PaginatorInterface $paginator, Request $request): Response
     {
-        $commande = $commandeRepository->findAllDesc($choosenUser->getId());
+        $commande = $paginator->paginate(
+            $commandeRepository->findAllDesc($choosenUser->getId()),
+            $request->query->getInt('page', 1),
+            7
+        ); 
 
         return $this->render('commande/index.html.twig', [
             'utilisateur' => $choosenUser,
