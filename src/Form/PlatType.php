@@ -6,11 +6,9 @@ use App\Entity\Plat;
 use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\All;
+use Vich\UploaderBundle\Form\Type\VichImageType;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
-use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\MoneyType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -24,7 +22,7 @@ class PlatType extends AbstractType
             ->add('libelle',TextType::class)
             ->add('description',TextareaType::class)
             ->add('prix',MoneyType::class)
-            ->add('image', TextType::class)
+            ->add('image', VichImageType::class)
             ->add('active',CheckboxType::class, [
                 'required'   => false  
             ])
