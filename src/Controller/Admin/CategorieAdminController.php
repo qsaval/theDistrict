@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Categorie;
 use App\Form\CategorieType;
 use App\Repository\CategorieRepository;
+use App\Repository\PlatRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -70,8 +71,14 @@ class CategorieAdminController extends AbstractController
     }
 
     #[Route('/admin/categorie/supresion/{id}', name: 'admin_categorie_delete')]
-    public function deleteCategorie(Categorie $categorie, EntityManagerInterface $manager): Response
+    public function deleteCategorie(Categorie $categorie, EntityManagerInterface $manager, PlatRepository $platRepository): Response
     {
+        $plat = $platRepository->findBy(['categorie' => $categorie->getId()]);
+
+        for($i=0; $i<count($plat); $i++){
+            $manager->remove($plat[$i]);
+        }
+
         $manager->remove($categorie);
         $manager->flush();
 

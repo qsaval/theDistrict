@@ -46,9 +46,9 @@ class CategorieRepository extends ServiceEntityRepository
    {
        return $this->createQueryBuilder('c')
             ->andWhere('c.active = true')
-           ->setMaxResults($value)
-           ->getQuery()
-           ->getResult()
+            ->setMaxResults($value)
+            ->getQuery()
+            ->getResult()
        ;
    }
 

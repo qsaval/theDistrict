@@ -60,6 +60,8 @@ class CartController extends AbstractController
             $this->getUser()->getEmail()
         );
 
+        $cartService->removeCartAll();
+
         return $this->redirectToRoute('app_stripe', ['commande' => $commande->getId()]);
     }
 

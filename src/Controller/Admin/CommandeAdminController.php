@@ -5,6 +5,7 @@ namespace App\Controller\Admin;
 use App\Entity\Commande;
 use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
+use App\Repository\DetailRepository;
 use Doctrine\ORM\EntityManagerInterface;
 use Knp\Component\Pager\PaginatorInterface;
 use Symfony\Component\HttpFoundation\Request;
@@ -49,8 +50,14 @@ class CommandeAdminController extends AbstractController
     }
 
     #[Route('/admin/commande/supresion/{id}', name: 'admin_commande_delete')]
-    public function deleteCommande(Commande $commande, EntityManagerInterface $manager): Response
+    public function deleteCommande(Commande $commande, EntityManagerInterface $manager, DetailRepository $detailRepository): Response
     {
+        $detail = $detailRepository->findBy(['commande' => $commande->getId()]);
+
+        for($i=0; $i<count($detail); $i++){
+            $manager->remove($detail[$i]);
+        }
+
         $manager->remove($commande);
         $manager->flush();
 
