@@ -25,7 +25,10 @@ class PlatType extends AbstractType
             ->add('libelle',TextType::class)
             ->add('description',TextareaType::class)
             ->add('prix',MoneyType::class)
-            ->add('imageFile', VichImageType::class)
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image',
+                'required' => false
+            ])
             ->add('active',CheckboxType::class, [
                 'required'   => false  
             ])

@@ -5,11 +5,8 @@ namespace App\Form;
 use App\Entity\Categorie;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
-use Symfony\Component\Validator\Constraints\All;
 use Vich\UploaderBundle\Form\Type\VichImageType;
-use Symfony\Component\Validator\Constraints\Image;
 use Symfony\Component\OptionsResolver\OptionsResolver;
-use Symfony\Component\Form\Extension\Core\Type\FileType;
 use Symfony\Component\Form\Extension\Core\Type\TextType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
 
@@ -19,7 +16,10 @@ class CategorieType extends AbstractType
     {
         $builder
             ->add('libelle',TextType::class)
-            ->add('imageFile', VichImageType::class)
+            ->add('imageFile', VichImageType::class, [
+                'label' => 'Image',
+                'required' => false
+            ])
             ->add('active',CheckboxType::class, [
                 'required'   => false  
             ])
