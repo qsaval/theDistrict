@@ -50,6 +50,32 @@
     "knplabs/knp-paginator-bundle": {
         "version": "v6.2.0"
     },
+    "liip/imagine-bundle": {
+        "version": "2.10",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "1.8",
+            "ref": "d1227d002b70d1a1f941d91845fcd7ac7fbfc929"
+        },
+        "files": [
+            "config/packages/liip_imagine.yaml",
+            "config/routes/liip_imagine.yaml"
+        ]
+    },
+    "pentatrion/upload-bundle": {
+        "version": "1.0",
+        "recipe": {
+            "repo": "github.com/symfony/recipes-contrib",
+            "branch": "main",
+            "version": "0.2",
+            "ref": "8cc96a58d4d48c5e5cefc95b8dc0d1ed0e0c1a47"
+        },
+        "files": [
+            "config/packages/pentatrion_upload.yaml",
+            "config/routes/pentatrion_upload.yaml"
+        ]
+    },
     "phpunit/phpunit": {
         "version": "9.6",
         "recipe": {
@@ -320,6 +346,9 @@
             "branch": "main",
             "version": "1.13",
             "ref": "1b3064c2f6b255c2bc2f56461aaeb76b11e07e36"
-        }
+        },
+        "files": [
+            "config/packages/vich_uploader.yaml"
+        ]
     }
 }

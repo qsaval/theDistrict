@@ -19,7 +19,7 @@ class CategorieType extends AbstractType
     {
         $builder
             ->add('libelle',TextType::class)
-            ->add('image', VichImageType::class)
+            ->add('imageFile', VichImageType::class)
             ->add('active',CheckboxType::class, [
                 'required'   => false  
             ])

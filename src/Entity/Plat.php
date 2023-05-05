@@ -2,13 +2,16 @@
 
 namespace App\Entity;
 
-use App\Repository\PlatRepository;
-use Doctrine\Common\Collections\ArrayCollection;
-use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
+use App\Repository\PlatRepository;
+use Doctrine\Common\Collections\Collection;
+use Doctrine\Common\Collections\ArrayCollection;
+use Vich\UploaderBundle\Mapping\Annotation as Vich;
+use Symfony\Component\HttpFoundation\File\File;
 
 #[ORM\Entity(repositoryClass: PlatRepository::class)]
+#[Vich\Uploadable]
 class Plat
 {
     #[ORM\Id]
@@ -27,6 +30,9 @@ class Plat
 
     #[ORM\Column(length: 50)]
     private ?string $image = null;
+
+    #[Vich\UploadableField(mapping: 'images_food', fileNameProperty: 'image')]
+    private ?File $imageFile = null;
 
     #[ORM\Column]
     private ?bool $active = null;
@@ -152,5 +158,25 @@ class Plat
     public function getId()
     {
         return $this->id;
+    }
+
+    /**
+     * Get the value of imageFile
+     */ 
+    public function getImageFile()
+    {
+        return $this->imageFile;
+    }
+
+    /**
+     * Set the value of imageFile
+     *
+     * @return  self
+     */ 
+    public function setImageFile($imageFile)
+    {
+        $this->imageFile = $imageFile;
+
+        return $this;
     }
 }
