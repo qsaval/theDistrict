@@ -14,9 +14,9 @@
 		<div class="row">
 			{% for categorie in categories %}
 				{% if categorie.active == 'Yes' %}
-					<div class="col-lg-4 my-2 d-flex justify-content-center">
+					<div class="col-lg-4 my-2 d-flex justify-content-center ">
 						<div class="card m-2 carte " style="width: 18rem;">
-							<img src="{{ asset('media/') }}{{ categorie.image }}" class="card-img-top " alt="{{ categorie.libelle }}">
+							<img src="{{ asset('media/') }}{{ categorie.image }}" class="card-img-top rounded" alt="{{ categorie.libelle }}">
 							<div class="card-body">
 								<h4 class="card-title">{{ categorie.libelle }}</h4>                   
 								<br>
