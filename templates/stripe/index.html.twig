@@ -18,7 +18,7 @@
                             </div>
                         {% endfor %}
                         {% set payer = commande.total %}
-                        <form id='checkout-form' method='post' action="{{ path('app_stripe_charge') }}">             
+                        <form id='checkout-form' method='post' action="{{ path('app_stripe_charge',{commande: commande.id }) }}">             
                             <input type='hidden' name='stripeToken' id='stripe-token-id'>                              
                             <label for="card-element" class="mb-5">Payment la commande</label>
                             <br>
