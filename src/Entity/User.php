@@ -9,6 +9,7 @@ use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
 use Symfony\Component\Security\Core\User\PasswordAuthenticatedUserInterface;
 use Symfony\Component\Security\Core\User\UserInterface;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: UserRepository::class)]
 #[ORM\Table(name: '`user`')]
@@ -21,6 +22,8 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     private ?int $id = null;
 
     #[ORM\Column(length: 50, unique: true)]
+    #[Assert\NotBlank(message: 'Veuillez entre votre email')]
+    #[Assert\Email(message: 'Veuillez entre votre email',)]
     private ?string $email = null;
 
     #[ORM\Column]
@@ -32,29 +35,43 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[ORM\Column]
     private ?string $password = null;
 
+    #[Assert\NotBlank(message: 'Veuillez entre votre mot de passe')]
+    #[Assert\Length(min: 8, minMessage: "Votre mot de passe doit faire minimum 8 caractères")]
     private $plainPassword;
 
     private $newPassword;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: 'Veuillez entre votre nom')]
+    #[Assert\Length(min: 5, minMessage: "Le nom est trop court")]
     private ?string $nom = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: 'Veuillez entre votre prenom')]
+    #[Assert\Length(min: 4, minMessage: "Le prenom est trop court")]
     private ?string $prenom = null;
 
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: 'Veuillez entre votre numero de telephone')]
+    #[Assert\Length(min: 10, minMessage: "Le numero de telephone est trop court")]
     private ?string $telephone = null;
 
     #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class)]
     private Collection $commande;
 
     #[ORM\Column(length: 20)]
+    #[Assert\NotBlank(message: 'Veuillez entre votre code postal')]
+    #[Assert\Length(min: 5, minMessage: "Le code postal est trop court")]
     private ?string $cp = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: 'Veuillez entre votre ville')]
+    #[Assert\Length(min: 5, minMessage: "Le nom de votre ville est trop court")]
     private ?string $ville = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: 'Veuillez entre votre adresse')]
+    #[Assert\Length(min: 10, minMessage: "La adresse est trop court")]
     private ?string $adresse = null;
 
     public function __construct()

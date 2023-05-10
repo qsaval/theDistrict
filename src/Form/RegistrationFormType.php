@@ -17,23 +17,27 @@ class RegistrationFormType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('nom',TextType::class)
-            ->add('prenom',TextType::class)
+            ->add('nom',TextType::class,[
+                'required' => false,             
+            ])
+            ->add('prenom',TextType::class,[
+                'required' => false,             
+            ])
             ->add('adresse', TextType::class,[
-                'invalid_message' => 'Le adresse n\'est pas valide!',
+                'required' => false,             
             ])
             ->add('cp', NumberType::class, [
-                'required'   => true,            
-                'invalid_message' => 'Le code postal n\'est pas valide!',
-                'label' => 'Code postal'])
+                'required' => false,                 
+                'label' => 'Code postal'
+            ])
             ->add('ville', TextType::class,[
-                'invalid_message' => 'Le ville n\'est pas valide!',
+                'required' => false,             
             ])
             ->add('telephone',NumberType::class,[
-                'invalid_message' => 'Le telephone n\'est pas valide!',
+                'required' => false,             
             ])
-            ->add('email',EmailType::class,[
-                'invalid_message' => 'Le email n\'est pas valide!',
+            ->add('email',TextType::class,[
+                'required' => false,  
             ])
             ->add('plainPassword', RepeatedType::class, [
                 'type' => PasswordType::class,
@@ -43,7 +47,8 @@ class RegistrationFormType extends AbstractType
                 'second_options' => [
                     'label' => 'Comfirmation du mot de passe', 
                 ],
-                'invalid_message' => 'Les mots de passe ne correspondent pas.'
+                'invalid_message' => 'Les mots de passe ne correspondent pas',
+                'required' => false,             
             ])
         ;
     }
