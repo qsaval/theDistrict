@@ -9,6 +9,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\Common\Collections\ArrayCollection;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: PlatRepository::class)]
 #[Vich\Uploadable]
@@ -20,18 +21,23 @@ class Plat
     private ?int $id = null;
 
     #[ORM\Column(length: 100)]
+    #[Assert\NotBlank(message: 'Veuillez entre le nom d\'un plat')]
+    #[Assert\Length(min: 5, minMessage: "le nom du plat doit faire minimum 5 caractères")]
     private ?string $libelle = null;
 
     #[ORM\Column(type: Types::TEXT)]
     private ?string $description = null;
 
     #[ORM\Column(type: Types::DECIMAL, precision: 6, scale: 2)]
+    #[Assert\Positive(message: 'le prix doit etre un nombre positif')]
+    #[Assert\NotBlank(message: 'Veuillez entre un prix')]
     private ?string $prix = null;
 
     #[ORM\Column(length: 50)]
     private ?string $image = null;
 
     #[Vich\UploadableField(mapping: 'images_food', fileNameProperty: 'image')]
+    #[Assert\NotBlank(message: 'Veuillez entre une image')]
     private ?File $imageFile = null;
 
     #[ORM\Column]
