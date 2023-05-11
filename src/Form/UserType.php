@@ -17,23 +17,26 @@ class UserType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-        ->add('nom',TextType::class)
-        ->add('prenom',TextType::class)
-        ->add('adresse', TextType::class,[
-            'invalid_message' => 'Le adresse n\'est pas valide!',
+        ->add('nom',TextType::class, [
+            'required'   => false
         ])
+        ->add('prenom',TextType::class, [
+            'required'   => false
+        ])
+        ->add('adresse', TextType::class,[
+            'required'   => false        ])
         ->add('cp', NumberType::class, [
-            'required'   => true,            
-            'invalid_message' => 'Le code postal n\'est pas valide!',
-            'label' => 'Code postal'])
+            'required'   => false,
+            'label' => 'Code postal'
+        ])
         ->add('ville', TextType::class,[
-            'invalid_message' => 'Le ville n\'est pas valide!',
+            'required'   => false        
         ])
         ->add('telephone',NumberType::class,[
-            'invalid_message' => 'Le telephone n\'est pas valide!',
+            'required'   => false        
         ])
         ->add('email',EmailType::class,[
-            'invalid_message' => 'Le email n\'est pas valide!',
+            'required'   => false
         ])
             ->add('plainPassword', PasswordType::class, [
                 'attr' => [
@@ -42,7 +45,8 @@ class UserType extends AbstractType
                 'label' => 'Mot de passe',
                 'label_attr' => [
                     'class' => 'form-label'
-                ]
+                ],
+                'required'   => false
             ])
             ->add('modifier', SubmitType::class)
         ;

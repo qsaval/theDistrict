@@ -22,9 +22,15 @@ class PlatType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('libelle',TextType::class)
-            ->add('description',TextareaType::class)
-            ->add('prix',MoneyType::class)
+            ->add('libelle',TextType::class,[
+                'required'   => false
+            ])
+            ->add('description',TextareaType::class, [
+                'required'   => false
+            ])
+            ->add('prix',MoneyType::class, [
+                'required'   => false
+            ])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image',
                 'required' => false

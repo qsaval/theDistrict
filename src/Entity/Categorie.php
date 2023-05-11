@@ -8,6 +8,7 @@ use Doctrine\Common\Collections\Collection;
 use Doctrine\ORM\Mapping as ORM;
 use Vich\UploaderBundle\Mapping\Annotation as Vich;
 use Symfony\Component\HttpFoundation\File\File;
+use Symfony\Component\Validator\Constraints as Assert;
 
 #[ORM\Entity(repositoryClass: CategorieRepository::class)]
 #[Vich\Uploadable]
@@ -19,12 +20,15 @@ class Categorie
     private ?int $id = null;
 
     #[ORM\Column(length: 50)]
+    #[Assert\NotBlank(message: 'Veuillez entre une categorie')]
+    #[Assert\Length(min: 5, minMessage: "la categorie doit faire minimum 5 caractères")]
     private ?string $libelle = null;
 
     #[ORM\Column(length: 50)]
     private ?string $image = null;
 
     #[Vich\UploadableField(mapping: 'images_categorie', fileNameProperty: 'image')]
+    #[Assert\NotBlank(message: 'Veuillez entre une image')]
     private ?File $imageFile = null;
 
     #[ORM\Column]
