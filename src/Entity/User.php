@@ -56,7 +56,7 @@ class User implements UserInterface, PasswordAuthenticatedUserInterface
     #[Assert\Length(min: 10, minMessage: "Le numero de telephone est trop court")]
     private ?string $telephone = null;
 
-    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class)]
+    #[ORM\OneToMany(mappedBy: 'user', targetEntity: Commande::class, orphanRemoval: true)]
     private Collection $commande;
 
     #[ORM\Column(length: 20)]

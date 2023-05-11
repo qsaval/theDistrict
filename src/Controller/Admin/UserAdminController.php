@@ -30,23 +30,8 @@ class UserAdminController extends AbstractController
     }
 
     #[Route('/admin/utilisateur/supresion/{id}', name: 'admin_user_delete')]
-    public function deleteUser(User $user, EntityManagerInterface $manager, CommandeRepository $commandeRepository, DetailRepository $detailRepository): Response
+    public function deleteUser(User $user, EntityManagerInterface $manager): Response
     {
-        $commande = $commandeRepository->findBy(['user' => $user->getId()]);
-
-        $detail = $detailRepository->findAll();
-        for($i=0; $i<count($detail); $i++){
-            for($j=0; $j<count($commande);  $j++){
-                if($detail[$i]->getCommande()->getId() == $commande[$j]->getId()){
-                    $manager->remove($detail[$i]);
-                }
-            }
-        }
-
-        for($k=0; $k<count($commande); $k++){
-            $manager->remove($commande[$k]);
-        }
-
         $manager->remove($user);
         $manager->flush();
 

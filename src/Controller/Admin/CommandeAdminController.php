@@ -3,7 +3,6 @@
 namespace App\Controller\Admin;
 
 use App\Entity\Commande;
-use App\Form\CommandeType;
 use App\Repository\CommandeRepository;
 use App\Repository\DetailRepository;
 use Doctrine\ORM\EntityManagerInterface;
@@ -30,34 +29,21 @@ class CommandeAdminController extends AbstractController
     }
 
     #[Route('/admin/commande/edition/{id}', name: 'admin_commande_edit')]
-    public function editCommande(Commande $commande, Request $request, EntityManagerInterface $manager): Response
+    public function editCommande(Commande $commande, EntityManagerInterface $manager): Response
     {
-        $form = $this->createForm(CommandeType::class, $commande);
-
-        $form->handleRequest($request);
-        if ($form->isSubmitted() && $form->isValid()) {
-            $commande = $form->getData($request);
-            
-            $manager->persist($commande);
-            $manager->flush();
-
-            return $this->redirectToRoute('admin_commande');
+        if($commande->getEtat() < 3){
+            $commande->setEtat($commande->getEtat() + 1);
         }
 
-        return $this->render('admin/commande/editCommande.html.twig', [
-           'form' => $form->createView(),
-        ]);
+        $manager->persist($commande);
+        $manager->flush();
+
+        return $this->redirectToRoute('admin_commande');
     }
 
     #[Route('/admin/commande/supresion/{id}', name: 'admin_commande_delete')]
     public function deleteCommande(Commande $commande, EntityManagerInterface $manager, DetailRepository $detailRepository): Response
     {
-        $detail = $detailRepository->findBy(['commande' => $commande->getId()]);
-
-        for($i=0; $i<count($detail); $i++){
-            $manager->remove($detail[$i]);
-        }
-
         $manager->remove($commande);
         $manager->flush();
 

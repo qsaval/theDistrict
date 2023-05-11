@@ -33,7 +33,7 @@ class Categorie
     #[ORM\Column]
     private ?bool $active = null;
 
-    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Plat::class)]
+    #[ORM\OneToMany(mappedBy: 'categorie', targetEntity: Plat::class, orphanRemoval: true)]
     private Collection $plats;
 
     public function __construct()

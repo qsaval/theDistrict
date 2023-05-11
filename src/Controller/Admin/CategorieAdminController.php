@@ -72,14 +72,8 @@ class CategorieAdminController extends AbstractController
     }
 
     #[Route('/admin/categorie/supresion/{id}', name: 'admin_categorie_delete')]
-    public function deleteCategorie(Categorie $categorie, EntityManagerInterface $manager, PlatRepository $platRepository): Response
+    public function deleteCategorie(Categorie $categorie, EntityManagerInterface $manager): Response
     {
-        $plat = $platRepository->findBy(['categorie' => $categorie->getId()]);
-
-        for($i=0; $i<count($plat); $i++){
-            $manager->remove($plat[$i]);
-        }
-
         $manager->remove($categorie);
         $manager->flush();
 

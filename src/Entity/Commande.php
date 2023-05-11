@@ -25,7 +25,7 @@ class Commande
     #[ORM\Column]
     private ?int $etat = null;
 
-    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Detail::class)]
+    #[ORM\OneToMany(mappedBy: 'commande', targetEntity: Detail::class, orphanRemoval: true)]
     private Collection $detail;
 
     #[ORM\ManyToOne(inversedBy: 'commande')]
