@@ -27,8 +27,7 @@ class Categorie
     #[ORM\Column(length: 50)]
     private ?string $image = null;
 
-    #[Vich\UploadableField(mapping: 'images_categorie', fileNameProperty: 'image')]
-    #[Assert\NotBlank(message: 'Veuillez entre une image')]
+    #[Vich\UploadableField(mapping: 'images_categorie', fileNameProperty: 'image')] 
     private ?File $imageFile = null;
 
     #[ORM\Column]

@@ -37,7 +37,6 @@ class Plat
     private ?string $image = null;
 
     #[Vich\UploadableField(mapping: 'images_food', fileNameProperty: 'image')]
-    #[Assert\NotBlank(message: 'Veuillez entre une image')]
     private ?File $imageFile = null;
 
     #[ORM\Column]

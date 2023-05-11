@@ -15,7 +15,9 @@ class CategorieType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options): void
     {
         $builder
-            ->add('libelle',TextType::class)
+            ->add('libelle',TextType::class, [
+                'required' => false
+            ])
             ->add('imageFile', VichImageType::class, [
                 'label' => 'Image',
                 'required' => false
