@@ -52,6 +52,15 @@ class CategorieRepository extends ServiceEntityRepository
        ;
    }
 
+   public function findAllP(): array
+   {
+       return $this->createQueryBuilder('c')
+            ->andWhere('c.active = true')
+            ->getQuery()
+            ->getResult()
+       ;
+   }
+
 //    public function findOneBySomeField($value): ?Categorie
 //    {
 //        return $this->createQueryBuilder('c')

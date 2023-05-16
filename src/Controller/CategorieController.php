@@ -16,9 +16,9 @@ class CategorieController extends AbstractController
     public function index(CategorieRepository $categoriripo,  PaginatorInterface $paginator, Request $request): Response
     {
         $categorie = $paginator->paginate(
-            $categoriripo->findAll(),
+            $categoriripo->findAllP(),
             $request->query->getInt('page', 1),
-            7
+            6
         );
 
         return $this->render('categorie/index.html.twig', [

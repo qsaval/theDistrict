@@ -16,7 +16,7 @@ class PlatController extends AbstractController
     public function index(PlatRepository $platripo,  PaginatorInterface $paginator, Request $request): Response
     {
         $plat = $paginator->paginate(
-            $platripo->findAll(),
+            $platripo->findAllP(),
             $request->query->getInt('page', 1),
             6
         );
