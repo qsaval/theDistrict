@@ -19,7 +19,10 @@
                         <div class="d-sm-flex align-items-center border-top py-4">
                             <div class="w-100 pt-1 ps-sm-4">
                                 <div class="d-flex">
-                                    <div class="me-3">
+                                    <div class="card carte" style="width: 12rem;">
+                                        <img src="{{ asset('media/') }}{{ plat.plat.image }}" class="card-img-top" alt="{{ plat.plat.libelle }}">
+                                    </div>
+                                    <div class="mx-3">
                                         <h3 class="h5 mb-2">{{ plat.plat.libelle }}</h3>
                                         <p class="mb-2">{{ plat.plat.description }}</p>
                                     </div>
