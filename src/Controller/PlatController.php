@@ -26,7 +26,7 @@ class PlatController extends AbstractController
         ]);
     }
 
-    #[Route('/plat/{id}', name: 'plat_detail')]
+    #[Route('/plat/{libelle}', name: 'plat_detail')]
     public function detail(Plat $plat): Response
     {
         return $this->render('plat/detail.html.twig', [

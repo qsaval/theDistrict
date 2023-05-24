@@ -30,7 +30,7 @@ Acceuil
                     alt="{{ categorie.libelle }}">
                 <div class="card-body">
                     <h4 class="card-title">{{ categorie.libelle }}</h4>
-                    <a href="{{ path('categorie_listPlat', {'id': categorie.id}) }}" class="btn btn-primary mt-2">liste des
+                    <a href="{{ path('categorie_listPlat', {'libelle': categorie.libelle}) }}" class="btn btn-primary mt-2">liste des
                         Plats</a>
                 </div>
             </div>
@@ -45,7 +45,7 @@ Acceuil
                 <div class="card-body">
                     <h4 class="card-title">{{ plat.libelle }}</h4>
                     <div class="d-flex justify-content-between">
-                        <a href="{{ path('plat_detail', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
+                        <a href="{{ path('plat_detail', {'libelle': plat.libelle}) }}" class="btn btn-primary">Description</a>
                         <p class="fs-3">{{ plat.prix }}€</p>
                     </div>                
                 </div>

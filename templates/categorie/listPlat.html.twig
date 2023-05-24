@@ -19,7 +19,7 @@
 						<div class="card-body">
 							<h4 class="card-title">{{ plat.libelle }}</h4>
 							<div class="d-flex justify-content-between">
-								<a href="{{ path('plat_detail', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
+								<a href="{{ path('plat_detail', {'libelle': plat.libelle}) }}" class="btn btn-primary">Description</a>
 								<p class="fs-3">{{ plat.prix }}€</p>
 							</div>						
 						</div>

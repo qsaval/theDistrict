@@ -7,7 +7,7 @@
 {% block body %}
 	<div class="container">
 		<div class="d-flex justify-content-center">
-			<img src="{{ asset('media/assiette2.jpg') }}" alt="logo" class="">
+			<img src="{{ asset('media/assiette2.jpg') }}" alt="logo">
 		</div>
 		<h1 class=" mt-4">Liste des plats</h1>
 		<p>Bon choix a vous:</p>
@@ -21,7 +21,7 @@
 								<h4 class="card-title">{{ plat.libelle }}</h4>
 								<br>
 								<div class="d-flex justify-content-between">
-									<a href="{{ path('plat_detail', {'id': plat.id}) }}" class="btn btn-primary">Description</a>
+									<a href="{{ path('plat_detail', {'libelle': plat.libelle}) }}" class="btn btn-primary">Description</a>
 									<p class="fs-3">{{ plat.prix }}€</p>
 								</div>
 							</div>

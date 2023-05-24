@@ -26,7 +26,7 @@ class CategorieController extends AbstractController
         ]);
     }
 
-    #[Route('/categorie/{id}', name: 'categorie_listPlat')]
+    #[Route('/categorie/{libelle}', name: 'categorie_listPlat')]
     public function listPlat(Categorie $categorie): Response
     {
         return $this->render('categorie/listPlat.html.twig', [
