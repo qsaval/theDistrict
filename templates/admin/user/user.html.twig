@@ -33,7 +33,12 @@
 							<th scope="row">{{ user.id }}</th>
 							<td>{{ user.prenom}} {{ user.nom}}</td>
 							<td class="d-none d-lg-table-cell d-print-teble-cell">{{ user.email }}</td>
-							<td class="d-none d-lg-table-cell d-print-teble-cell">{{ user.roles[0]}}</td>
+							{% if user.roles|length == 2 %}
+								<td class="d-none d-lg-table-cell d-print-teble-cell"> <span class="badge rounded-pill bg-success"> {{ user.roles[0] }} </span>  <span class="badge rounded-pill bg-info">{{ user.roles[1]}}</span></td>
+							{% else %}
+								<td class="d-none d-lg-table-cell d-print-teble-cell"><span class="badge rounded-pill bg-info">{{ user.roles[0]}}</span></td>
+							{% endif %}
+							
 							<td>
 								<a href="{{ path('admin_user_delete', {'id': user.id}) }}" class="btn btn-warning">Supprimer</a>
 							</td>
