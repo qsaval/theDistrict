@@ -51,7 +51,7 @@ class CartController extends AbstractController
             ->setDateCommande(new \DateTimeImmutable())
             ->setUser($this->getUser());
         $em->persist($commande);
-        dd($commande->getDetails()[2]->getPlat());
+
         $em->flush();
 
         $mailService->sendValide(
