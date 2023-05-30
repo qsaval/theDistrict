@@ -23,7 +23,20 @@
 			</ul>
 			<ul class="navbar-nav me-auto col-lg-3">
 				<li class="nav-item">
-					<a class="nav-link active" href="{{ path('cart') }}">Panier</a>
+					<div class="nav-link active">
+						<a class="text-white text-decoration-none" href="{{ path('cart') }}">Panier</a>
+						{% set total = 0 %}
+						{% if  app.session.get('cart')|length != 0 %}
+							<p class="ms-4">
+								{% for i in 1..app.session.get('cart')|length %}
+									{% set total = total + app.session.get('cart')[i] %}
+								{% endfor %}
+
+								{{ total }}
+
+							</p>
+						{% endif %}
+					</div>
 				</li>
 				{% if app.user %}
 					<li class="nav-item dropdown" style="margin-right: 5rem;">
