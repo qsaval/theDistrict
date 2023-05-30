@@ -56,6 +56,9 @@
                 </div>
             </div>
         </div>
+        <pre>
+            {{ dump(app.session.get('cart')) }}
+        </pre>
     {% else %}
         <div class="container d-flex flex-column justify-content-center min-vh-100">
             <div class="text-center pt-4 mt-lg-2">
