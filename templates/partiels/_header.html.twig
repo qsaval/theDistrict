@@ -1,4 +1,4 @@
-<nav class="navbar navbar-expand-lg navbar-dark bg-primary" data-bs-theme="dark">
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary mb-0" data-bs-theme="dark">
 	<div class="container-fluid">
 		<a class="navbar-brand" href="{{ path('home') }}">The District</a>
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -27,7 +27,7 @@
 						<a class="text-white text-decoration-none" href="{{ path('cart') }}">Panier</a>
 						{% set total = 0 %}
 						{% if  app.session.get('cart')|length != 0 %}
-							<p class="ms-4 mb-0">
+							<p class="d-flex justify-content-center mb-0">
 								{% for key in app.session.get('cart')|keys  %}
 									{% set total = total + app.session.get('cart')[key] %}
 								{% endfor %}

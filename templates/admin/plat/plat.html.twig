@@ -24,7 +24,8 @@
 				<thead>
 					<tr class="row">
 						<th class="d-none d-lg-table-cell d-print-teble-cell col-1" scope="col">Id</th>
-						<th class="col-4 col-lg-2" scope="col">Nom</th>
+						<th class="col-4 col-lg-1" scope="col">Nom</th>
+						<th class="col-4 col-lg-1" scope="col">Categorie</th>
 						<th class="d-none d-lg-table-cell d-print-teble-cell col-4" scope="col">Description</th>
 						<th class="d-none d-lg-table-cell d-print-teble-cell col-1" scope="col">Prix</th>
 						<th class="col-4 col-lg-2" scope="col">Edition</th>
@@ -35,7 +36,8 @@
 					{% for plat in plats %}
 						<tr class="table-primary row">
 							<th class="d-none d-lg-table-cell d-print-teble-cell col-1" scope="row">{{ plat.id }}</th>
-							<td class="col-4 col-lg-2">{{ plat.libelle }}</td>
+							<td class="col-4 col-lg-1">{{ plat.libelle }}</td>
+							<td class="col-4 col-lg-1">{{ plat.categorie.libelle }}</td>
 							<td class="d-none d-lg-table-cell d-print-teble-cell col-4">{{ plat.description }}</td>
 							<td class="d-none d-lg-table-cell d-print-teble-cell col-1">{{ plat.prix }}€</td>
 							<td class="col-4 col-lg-2">

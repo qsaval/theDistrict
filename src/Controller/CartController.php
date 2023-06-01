@@ -25,7 +25,7 @@ class CartController extends AbstractController
     }
 
     #[Route('/mon-panier/valide', name: 'cart_valide')]
-    public function valide(CartService $cartService, Request $request, PlatRepository $repo, EntityManagerInterface $em, MailService $mailService): Response
+    public function valide(Request $request, PlatRepository $repo, EntityManagerInterface $em, MailService $mailService): Response
     {
         $session = $request->getSession();
         $panier = $session->get('cart', []);
@@ -40,6 +40,7 @@ class CartController extends AbstractController
             $detail->setPlat($plat)
                 ->setQuantite($quantite);
             $em->persist($detail);
+
             
             $commande->addDetail($detail);
 
@@ -61,9 +62,7 @@ class CartController extends AbstractController
             $this->getUser()->getEmail()
         );
 
-        $cartService->removeCartAll();
-
-        return $this->redirectToRoute('app_stripe', ['commande' => $commande->getId()]);
+        return $this->redirectToRoute('app_stripe', ['commande' => $commande->getId(), '']);
     }
 
     #[Route('/mon-panier/add/{id<\d+>}', name: 'cart_add')]
